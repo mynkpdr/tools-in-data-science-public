@@ -10,4 +10,5 @@
 
 {{ $sidebarFile := printf "sidebars/%s.md" $sidebar }}
 {{ $sidebarMarkdown := readFile $sidebarFile }}
-{{ $sidebarMarkdown | markdownify }}
+{{- $basePath := .Site.BaseURL | strings.TrimSuffix "/" -}}
+{{ $sidebarMarkdown | markdownify | replaceRE `href="(/[^"]*)"` (printf `href="%s$1"` $basePath) | safeHTML }}

@@ -27,4 +27,4 @@
   {{- end -}}
   {{- $href = printf "%s%s" $clean $suffix -}}
 {{- end -}}
-<a href="{{ $href | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
+<a href="{{ $href | relURL | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
