@@ -32,3 +32,4 @@ project*/*.csv
 # Hugo generated artifacts
 public/
 .hugo-build/
+.hugo-build2/

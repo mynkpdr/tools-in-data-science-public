@@ -207,7 +207,7 @@ done < <(repo_files "$LEGACY_CONTENT_DIR/*.md")
 while IFS= read -r rel; do
   mkdir -p "$STATIC_DIR/$(dirname "$rel")"
   cp "$ROOT_DIR/$rel" "$STATIC_DIR/$rel"
-done < <(repo_files | grep -v '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$')
+done < <(repo_files | grep -vE '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$|^\.hugo-build|^index\.html$|^public/')
 
 # Build final static site into `public/`.
 HUGO_ARGS=(--source "$SITE_DIR" --destination "$OUTPUT_DIR" --minify)
