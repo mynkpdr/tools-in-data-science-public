@@ -27,6 +27,7 @@ DATA_DIR="$SITE_DIR/data"
 NAV_DATA_FILE="$DATA_DIR/sidebar-nav.yaml"
 OUTPUT_DIR="$ROOT_DIR/public"
 COURSE_DIR_PATTERN='^20[0-9]{2}-[0-9]{2}$'
+LEGACY_CONTENT_DIR="legacy/2025-content"
 
 # Fail fast when required CLI tools are missing.
 require_cmd() {
@@ -39,6 +40,14 @@ require_cmd() {
 require_cmd git
 require_cmd hugo
 require_cmd go
+
+# Include tracked files and new source files that are not ignored. This keeps
+# local builds useful before a maintainer stages newly added term content.
+repo_files() {
+  git -C "$ROOT_DIR" ls-files --cached --others --exclude-standard "$@" | while IFS= read -r rel; do
+    [[ -e "$ROOT_DIR/$rel" ]] && printf '%s\n' "$rel"
+  done
+}
 
 # Hugo Book uses SCSS. Non-extended Hugo may fail at build time.
 if ! hugo version 2>/dev/null | grep -qi "extended"; then
@@ -84,6 +93,8 @@ normalize_sidebar() {
     BASE_URL="$section_root" perl -pe '
       BEGIN { $base = $ENV{"BASE_URL"} }
       s{\(README\.md\)}{($base)}g;
+      s{\((?:\.\./)+((?:[-a-zA-Z0-9_]+/)*)README\.md\)}{(/$1)}g;
+      s{\((?!https?://|/|#|mailto:)((?:[-a-zA-Z0-9_]+/)*)README\.md\)}{(/$1)}g;
       s{\((?:\.\./)+([^)]+?)\.md\)}{(/$1/)}g;
       s{\((?!https?://|/|#|mailto:)([^)]+?)\.md\)}{(/$1/)}g;
       s{\((?!https?://|/|#|mailto:)([-a-zA-Z0-9_/]+)\)}{(/$1/)}g;
@@ -97,13 +108,22 @@ normalize_sidebar() {
     ' > "$dst"
 }
 
-# Generate per-section sidebar files from existing sidebar sources.
-normalize_sidebar "$ROOT_DIR/_sidebar.md" "$SIDEBAR_DIR/root.md" "/" ""
+# Generate one normalized sidebar per term from each term's `_sidebar.md`.
 for course in "${COURSE_DIRS[@]}"; do
   if [[ -f "$ROOT_DIR/$course/_sidebar.md" ]]; then
     normalize_sidebar "$ROOT_DIR/$course/_sidebar.md" "$SIDEBAR_DIR/$course.md" "/$course/" "$course"
   fi
 done
+
+# The root namespace (home page + republished legacy pages) has no sidebar source
+# of its own; it reuses the CURRENT term's sidebar so each term is maintained in a
+# single `_sidebar.md`. Derive `root.md` from the current term's normalized sidebar,
+# repointing only "Course Readme" from the term root to the site root.
+CURRENT_TERM="$(grep -E '^current:' "$ROOT_DIR/terms.yml" 2>/dev/null | awk '{print $2}')"
+if [[ -z "${CURRENT_TERM:-}" || ! -f "$SIDEBAR_DIR/$CURRENT_TERM.md" ]]; then
+  CURRENT_TERM="${COURSE_DIRS[${#COURSE_DIRS[@]}-1]}"
+fi
+sed -E "s#\]\(/$CURRENT_TERM/\)#](/)#" "$SIDEBAR_DIR/$CURRENT_TERM.md" > "$SIDEBAR_DIR/root.md"
 
 # Extract unique navigable links from a normalized sidebar.
 # Used to define strict prev/next order that mirrors sidebar order.
@@ -141,18 +161,24 @@ for course in "${COURSE_DIRS[@]}"; do
   fi
 done
 
-# Copy tracked markdown into Hugo content.
+# Copy source markdown into Hugo content.
 # Behavior:
 # - skip docsify sidebar files
+# - skip legacy source pages; they are republished below at compatibility URLs
 # - map README.md -> _index.md for clean section URLs
 # - rewrite `images/` links to absolute `/images/`
 while IFS= read -r rel; do
   case "$rel" in
+    "$LEGACY_CONTENT_DIR"/*)
+      continue
+      ;;
     */_sidebar.md|_sidebar.md)
       continue
       ;;
   esac
 
+  # Term content is authored in its final flat layout (e.g. 2026-05/week1/README.md),
+  # so source paths map directly to published paths.
   dest="$CONTENT_DIR/$rel"
   if [[ "$(basename "$rel")" == "README.md" ]]; then
     dest="$(dirname "$dest")/_index.md"
@@ -161,30 +187,55 @@ while IFS= read -r rel; do
   mkdir -p "$(dirname "$dest")"
   cp "$ROOT_DIR/$rel" "$dest"
   sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
-done < <(git -C "$ROOT_DIR" ls-files '*.md')
+done < <(repo_files '*.md')
 
-# Duplicate shared top-level content pages into each course folder.
-# This ensures links like `/2025-09/system-requirements/` resolve and keep
-# course-specific sidebar context while navigating.
-for course in "${COURSE_DIRS[@]}"; do
-  while IFS= read -r rel; do
-    dest="$CONTENT_DIR/$course/$rel"
-    if [[ ! -f "$dest" ]]; then
-      mkdir -p "$(dirname "$dest")"
-      cp "$ROOT_DIR/$rel" "$dest"
-      sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
-    fi
-  done < <(git -C "$ROOT_DIR" ls-files '*.md' | grep -E '^[^/]+\.md$' | grep -v -E '^README\.md$|^_sidebar\.md$')
-done
+# Republish legacy content at its historic root URLs and under each term.
+# This preserves old links while keeping the repository root focused on current
+# term entry points and publishing configuration. Markdown pages become Hugo
+# content (README.md -> _index.md for clean section URLs); supporting files
+# (scripts, configs, images) are republished as static assets at the same paths.
+while IFS= read -r rel; do
+  legacy_rel="${rel#"$LEGACY_CONTENT_DIR"/}"
 
-# Copy all non-markdown tracked files as static assets, excluding
-# build/config scaffolding files that should not be published as assets.
+  if [[ "$rel" == *.md ]]; then
+    content_rel="$legacy_rel"
+    [[ "$(basename "$legacy_rel")" == "README.md" ]] && content_rel="$(dirname "$legacy_rel")/_index.md"
+
+    dest="$CONTENT_DIR/$content_rel"
+    mkdir -p "$(dirname "$dest")"
+    cp "$ROOT_DIR/$rel" "$dest"
+    sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
+
+    for course in "${COURSE_DIRS[@]}"; do
+      dest="$CONTENT_DIR/$course/$content_rel"
+      if [[ ! -f "$dest" ]]; then
+        mkdir -p "$(dirname "$dest")"
+        cp "$ROOT_DIR/$rel" "$dest"
+        sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
+      fi
+    done
+  else
+    mkdir -p "$STATIC_DIR/$(dirname "$legacy_rel")"
+    cp "$ROOT_DIR/$rel" "$STATIC_DIR/$legacy_rel"
+    for course in "${COURSE_DIRS[@]}"; do
+      mkdir -p "$STATIC_DIR/$course/$(dirname "$legacy_rel")"
+      cp "$ROOT_DIR/$rel" "$STATIC_DIR/$course/$legacy_rel"
+    done
+  fi
+done < <(repo_files "$LEGACY_CONTENT_DIR")
+
+# Copy all non-markdown tracked files as static assets, excluding legacy content
+# (republished above) and build/config scaffolding that should not be published.
 while IFS= read -r rel; do
   mkdir -p "$STATIC_DIR/$(dirname "$rel")"
   cp "$ROOT_DIR/$rel" "$STATIC_DIR/$rel"
-done < <(git -C "$ROOT_DIR" ls-files | grep -v '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$')
+done < <(repo_files | grep -vE "\.md\$|^hugo/|^\.github/|^\.gitignore\$|^setup\.sh\$|^\.hugo-build|^index\.html\$|^public/|^${LEGACY_CONTENT_DIR}/")
 
 # Build final static site into `public/`.
-hugo --source "$SITE_DIR" --destination "$OUTPUT_DIR" --minify
+HUGO_ARGS=(--source "$SITE_DIR" --destination "$OUTPUT_DIR" --minify)
+if [[ -n "${HUGO_BASEURL:-}" ]]; then
+  HUGO_ARGS+=(--baseURL "$HUGO_BASEURL")
+fi
+hugo "${HUGO_ARGS[@]}"
 
 echo "Done. Static site generated at: $OUTPUT_DIR"
