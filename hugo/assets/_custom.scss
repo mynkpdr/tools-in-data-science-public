@@ -7,6 +7,12 @@ html[data-user-theme="dark"] {
   @include theme-dark;
 }
 
+// Let the docs layout use the full viewport width.
+.container {
+  max-width: none;
+  margin: 0;
+}
+
 // Sidebar theme toggle button styling.
 .tds-theme-toggle {
   margin-top: 1rem;
@@ -27,4 +33,68 @@ html[data-user-theme="dark"] {
 .book-menu-content a.active {
   color: var(--color-link);
   font-weight: 600;
+}
+
+// Collapsible course sidebar groups (rendered as <details class="tds-week">).
+.book-menu-content .tds-week {
+  margin: 0.55rem 0;
+  border-bottom: 1px solid var(--gray-200);
+  padding-bottom: 0.4rem;
+}
+
+.book-menu-content .tds-week summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.book-menu-content .tds-week summary::-webkit-details-marker {
+  display: none;
+}
+
+.book-menu-content .tds-week summary::after {
+  content: "+";
+  color: var(--color-link);
+  font-weight: 700;
+}
+
+.book-menu-content .tds-week[open] summary::after {
+  content: "-";
+}
+
+.book-menu-content .tds-week ul {
+  border-left: 2px solid var(--gray-200);
+  margin: 0.6rem 0 0 0.15rem;
+  padding-inline-start: 0.85rem;
+}
+
+// Milestone links (projects, ROE, and resource shortcuts) shown as pill rows.
+.book-menu-content .tds-link ul {
+  list-style: none;
+  margin: 0.55rem 0;
+  padding: 0;
+}
+
+.book-menu-content .tds-link li {
+  margin: 0.35rem 0;
+}
+
+.book-menu-content .tds-link a {
+  display: block;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 0.4rem;
+  background: var(--gray-100);
+  color: var(--body-font-color);
+  font-weight: 600;
+}
+
+.book-menu-content .tds-link a:hover,
+.book-menu-content .tds-link a.active {
+  border-color: var(--color-link);
+  color: var(--color-link);
 }

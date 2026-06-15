@@ -49,6 +49,54 @@
       cursor: pointer;
     }
 
+    /* Collapsible course sidebar groups (rendered as <details class="tds-week">). */
+    .sidebar-nav .tds-week,
+    .sidebar nav .tds-week {
+      margin: 0.55rem 0;
+      border-bottom: 1px solid var(--mono-tint2, #e5e7eb);
+      padding-bottom: 0.4rem;
+    }
+
+    .sidebar-nav .tds-week summary,
+    .sidebar nav .tds-week summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-weight: 600;
+      line-height: 1.35;
+      list-style: none;
+    }
+
+    .sidebar-nav .tds-week summary::-webkit-details-marker,
+    .sidebar nav .tds-week summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .sidebar-nav .tds-week summary::after,
+    .sidebar nav .tds-week summary::after {
+      content: "+";
+      color: var(--theme-color, #dc3545);
+      font-weight: 700;
+    }
+
+    .sidebar-nav .tds-week[open] summary::after,
+    .sidebar nav .tds-week[open] summary::after {
+      content: "-";
+    }
+
+    .sidebar-nav .tds-week ul,
+    .sidebar nav .tds-week ul {
+      border-left: 2px solid var(--mono-tint2, #e5e7eb);
+      margin: 0.6rem 0 0 0.15rem;
+      padding-left: 0.85rem;
+    }
+
+    .sidebar-nav .tds-week li,
+    .sidebar nav .tds-week li {
+      margin: 0.35rem 0;
+    }
+
     .open.folder.level-1 {
       margin-bottom: 2rem;
     }
@@ -125,7 +173,22 @@
 
 <body>
   <div id="app"></div>
+  <script src="legacy/legacy-pages.js"></script>
   <script>
+    // Map historic 2025 page URLs (and their per-term variants) to their new
+    // home under legacy/2025-content/ so old links keep resolving.
+    const legacyAlias = {};
+    const legacyTerms = ['2025-01', '2025-05', '2025-09', '2026-01', '2026-02', '2026-05'];
+    (window.tdsLegacyPages || []).forEach((page) => {
+      const target = `/legacy/2025-content/${page}.md`;
+      legacyAlias[`/${page}`] = target;
+      legacyAlias[`/${page}.md`] = target;
+      legacyTerms.forEach((term) => {
+        legacyAlias[`/${term}/${page}`] = target;
+        legacyAlias[`/${term}/${page}.md`] = target;
+      });
+    });
+
     function resizableSidebar(hook, vm) {
       hook.doneEach(() => {
         const sidebar = document.querySelector('.sidebar');
@@ -166,11 +229,57 @@
       });
     }
 
+    function persistSidebarDetails(hook, vm) {
+      const storageKey = 'tds-sidebar-week-state';
+
+      const readState = () => {
+        try {
+          return JSON.parse(localStorage.getItem(storageKey) || '{}');
+        } catch (e) {
+          return {};
+        }
+      };
+
+      const keyFor = (detail) => detail.querySelector('summary')?.textContent?.trim() || '';
+
+      const applySidebarState = () => {
+        const details = [...document.querySelectorAll('.sidebar details.tds-week')];
+        const state = readState();
+
+        details.forEach((detail) => {
+          const key = keyFor(detail);
+          if (Object.prototype.hasOwnProperty.call(state, key)) detail.open = !!state[key];
+        });
+
+        const active = document.querySelector('.sidebar a.active, .sidebar a[aria-current="page"]');
+        const activeParent = active?.closest('details.tds-week');
+        if (activeParent) activeParent.open = true;
+
+        const writeState = () => {
+          const next = {};
+          details.forEach((detail) => {
+            const key = keyFor(detail);
+            if (key) next[key] = detail.open;
+          });
+          localStorage.setItem(storageKey, JSON.stringify(next));
+        };
+
+        details.forEach((detail) => detail.addEventListener('toggle', writeState));
+        document.querySelectorAll('.sidebar a[href]').forEach((link) => link.addEventListener('click', writeState));
+        writeState();
+      };
+
+      hook.doneEach(() => {
+        setTimeout(applySidebarState, 0);
+      });
+    }
+
     window.$docsify = {
       name: 'Tools in Data Science — May 2026',
       subMaxLevel: 1,
       themeColor: '#dc3545',
       loadSidebar: true,
+      alias: legacyAlias,
       sidebarDisplayLevel: 1,
       pagination: {
         previousText: 'Previous',
@@ -179,7 +288,8 @@
         crossChapterText: true
       },
       plugins: [
-        resizableSidebar
+        resizableSidebar,
+        persistSidebarDetails
       ]
     };
 
