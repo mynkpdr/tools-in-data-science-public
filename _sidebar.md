@@ -211,6 +211,7 @@
 <div class="tds-link">
 
 [Lab: Scheduled scraper with GitHub Actions](2026-02/docs/labs/week-6/scheduled-scraper-github-actions-cron.md)
+[Lab: Open-Source Organisation Dossier](2026-02/docs/labs/week-6/osint-open-source-dossier.md)
 [Capstone: Job Posting Scraper](2026-02/docs/labs/week-6/capstone-job-posting-scraper-tracker.md)
 [Capstone: AI Signature Detection](2026-02/docs/labs/week-6/capstone-ai-signature-detection-cropper.md)
 [Capstone: Live Multilingual Translator](2026-02/docs/labs/week-6/capstone-live-multilingual-travel-translator.md)

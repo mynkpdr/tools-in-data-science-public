@@ -24,16 +24,17 @@
 
 - **CAPSTONE**: [Autonomous Research Agent](2026-02/docs/labs/week-5/capstone-autonomous-research-agent.md)
 
-## Week 06 — Web Scraping & Data Processing
+## Week 06 — Web Data Acquisition & OSINT
 
 - **CAPSTONE**: [Job Posting Scraper & Tracker](2026-02/docs/labs/week-6/capstone-job-posting-scraper-tracker.md)
 - **CAPSTONE**: [AI Signature Detection & Cropper](2026-02/docs/labs/week-6/capstone-ai-signature-detection-cropper.md)
 - **CAPSTONE**: [Live Multilingual Travel Translator](2026-02/docs/labs/week-6/capstone-live-multilingual-travel-translator.md)
 - **Lab**: [Scheduled scraper with GitHub Actions cron (DuckDB + Parquet)](2026-02/docs/labs/week-6/scheduled-scraper-github-actions-cron.md)
+- **Lab**: [Open-Source Organisation Dossier (cited OSINT)](2026-02/docs/labs/week-6/osint-open-source-dossier.md)
 
 ## Week 07 — CI/CD, Security & Cloud Infrastructure
 
-- **Lab**: [Red-team your own API + add NeMo Guardrails](2026-02/docs/labs/week-7/01-red-team-your-api-guardrails.md)
+- **Lab**: [Red-team your own LLM API (attack → defend → regression suite)](2026-02/docs/labs/week-7/01-red-team-your-api-guardrails.md)
 - **Lab**: [Full CI/CD: build → scan → Artifact Registry → deploy to Cloud Run](2026-02/docs/labs/week-7/02-full-cicd-cloud-run.md)
 
 ## Week 08 — MLOps, Fine-Tuning & Model Publishing
