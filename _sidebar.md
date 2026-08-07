@@ -221,11 +221,21 @@
 <details class="tds-week">
 <summary>Week 7: CI/CD, Security & Cloud</summary>
 
+**CI/CD & containers**
 - [GitHub Actions Advanced](2026-02/docs/week-7/01-github-actions-advanced.md)
 - [Advanced Docker](2026-02/docs/week-7/02-advanced-docker.md)
+
+**LLM security**
 - [LLM Security — Offensive](2026-02/docs/week-7/03-llm-security-offensive.md)
 - [LLM Safety — Defensive](2026-02/docs/week-7/04-llm-safety-defensive.md)
 - [OWASP LLM Top 10](2026-02/docs/week-7/05-owasp-llm-top-10.md)
+
+**Recon & defence**
+- [Cloudflare — Defender's Side](2026-02/docs/week-7/cloudflare-defender.md)
+- [Dorking for Recon & Exposure](2026-02/docs/week-7/dorking-recon.md)
+- [Person & Social OSINT](2026-02/docs/week-7/person-social-osint.md)
+
+**Cloud infrastructure**
 - [VMs & SSH](2026-02/docs/week-7/06-vms-ssh.md)
 - [Serverless Functions](2026-02/docs/week-7/07-serverless-functions.md)
 - [Terraform & IaC](2026-02/docs/week-7/08-terraform-iac.md)
