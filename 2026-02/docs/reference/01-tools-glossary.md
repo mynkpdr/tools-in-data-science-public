@@ -8,7 +8,7 @@ Use `Ctrl+F`. Terms are grouped by what you're trying to do, not alphabetically 
 
 | Term | What it is |
 |---|---|
-| **Hidden / internal API** | The JSON endpoint a page's own JavaScript calls. Almost always better than parsing HTML → [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) |
+| **Hidden / internal API** | The JSON endpoint a page's own JavaScript calls. Almost always better than parsing HTML → [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) |
 | **httpx** | Modern Python HTTP client; sync + async, HTTP/2, connection reuse |
 | **selectolax** | Very fast HTML parser; CSS selectors (a lighter alternative to BeautifulSoup) |
 | **Playwright** | Browser automation that renders JavaScript; auto-waits for elements |
@@ -20,7 +20,7 @@ Use `Ctrl+F`. Terms are grouped by what you're trying to do, not alphabetically 
 | **WARC** | Web ARChive format; raw request/response records used by Common Crawl |
 | **JSON-LD** | Structured data (schema.org) embedded in a page for search engines |
 | **Sitemap index** | A sitemap listing other sitemaps; needs one extra level of parsing |
-| **robots.txt** | A site's machine-readable crawling preferences. Not a law; strong evidence → [Legal & Ethical](2026-02/docs/week-6/legal-ethical-scraping.md) |
+| **robots.txt** | A site's machine-readable crawling preferences. Not a law; strong evidence → [Legal & Ethical](/2026-02/docs/week-6/legal-ethical-scraping/) |
 | **Crawl-delay** | A `robots.txt` directive asking for a minimum gap between requests |
 
 ## Being blocked (and not being blocked)

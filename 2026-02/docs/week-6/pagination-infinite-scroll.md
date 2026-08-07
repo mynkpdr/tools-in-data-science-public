@@ -3,13 +3,13 @@
 > **"Load more" is a button wired to a loop.** Find what it increments — a page number or a cursor token — and the signal that says stop, and you can fetch every result without clicking it.
 
 ⏱ ~6 min read · ~15 min hands-on
-🔗 needs: [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) · [HTTP clients](2026-02/docs/week-1/06-http-clients.md)
+🔗 needs: [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) · [HTTP clients](/2026-02/docs/week-1/06-http-clients/)
 
 Any list longer than one screen — search results, a catalog, a feed — is paginated somehow: page numbers, a "Load more" button, or an endless scrollbar. Reach for this the moment you see one; skip it if the first response already returns everything (check for a `total`/`count` field first).
 
 ## Try it in 5 minutes
 
-We'll reuse the hidden API from [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) — [`quotes.toscrape.com/api/quotes`](https://quotes.toscrape.com/api/quotes?page=1) — but now walk every page instead of just finding it.
+We'll reuse the hidden API from [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) — [`quotes.toscrape.com/api/quotes`](https://quotes.toscrape.com/api/quotes?page=1) — but now walk every page instead of just finding it.
 
 1. Fetch page 1:
    ```bash
@@ -43,7 +43,7 @@ Every pagination scheme answers two questions: *what do I send for the next batc
 
 Cursors exist because offsets get slow on huge, changing datasets — the server hands you a bookmark instead of recomputing "skip 4,930,000 rows" every call. You can't guess or skip ahead with one; you can only forward the exact value the *previous* response gave you.
 
-"Load more" buttons and infinite scroll are UI wrapped around one of these two shapes — the click handler or scroll listener calls a JSON endpoint with an incrementing page or a forwarded cursor. That's why [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) is a prerequisite: find that endpoint, then call it directly with a big `limit`/`page_size` instead of scripting a browser to scroll and click.
+"Load more" buttons and infinite scroll are UI wrapped around one of these two shapes — the click handler or scroll listener calls a JSON endpoint with an incrementing page or a forwarded cursor. That's why [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) is a prerequisite: find that endpoint, then call it directly with a big `limit`/`page_size` instead of scripting a browser to scroll and click.
 
 ```mermaid
 flowchart TD
@@ -55,7 +55,7 @@ flowchart TD
     E -->|Genuinely no API| F["Fallback: Playwright scroll-loop"]
 ```
 
-Only the last box needs a browser — see [Playwright & Selenium](2026-02/docs/week-6/playwright-selenium.md) for the scroll loop, and [Playwright Advanced](2026-02/docs/week-6/playwright-advanced.md) for waiting on network-idle and "load more" clicks reliably.
+Only the last box needs a browser — see [Playwright & Selenium](/2026-02/docs/week-6/playwright-selenium/) for the scroll loop, and [Playwright Advanced](/2026-02/docs/week-6/playwright-advanced/) for waiting on network-idle and "load more" clicks reliably.
 
 Here's the loop, written defensively — two stop signals checked, plus a hard cap so a wrong assumption fails loudly instead of running forever:
 
@@ -101,7 +101,7 @@ if __name__ == "__main__":
 
 Swap `page` for an `offset` you increment by `limit`, or for a `cursor` you read out of each response, and the shape of this loop doesn't change — only what you send, and what you check for "done", does.
 
-> ⚖️ **A pagination loop can turn "one look" into ten thousand requests without you noticing.** Rate-limit and cache as you go — see [Rate Limits, Retries & Caching](2026-02/docs/week-6/rate-limits-retries-caching.md) — and check [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md) before you paginate through anything that isn't a sandbox.
+> ⚖️ **A pagination loop can turn "one look" into ten thousand requests without you noticing.** Rate-limit and cache as you go — see [Rate Limits, Retries & Caching](/2026-02/docs/week-6/rate-limits-retries-caching/) — and check [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/) before you paginate through anything that isn't a sandbox.
 
 ## When it fails
 
@@ -110,9 +110,9 @@ Swap `page` for an `offset` you increment by `limit`, or for a `cursor` you read
 | Loop runs for hundreds of pages and never stops | Wrong JSON key, or a typo (`hasNext` vs `has_next`) | Print the raw last response, confirm the exact field name, and always add a `MAX_PAGES` cap |
 | Same rows repeat forever | The offset/page parameter isn't actually moving the server | Copy the **exact** query param from a real "Next" click in DevTools — sites use `page`, `p`, `pg`, `offset`, `skip`, `page_num`… |
 | Works for two pages, then stalls or repeats | You reused an old cursor/token instead of the latest one | Always read the cursor fresh from the response you just got — never cache it across calls |
-| `has_next: true` forever, but every page looks the same | You're being rate-limited and served a stale/cached response | Slow down → [Rate Limits, Retries & Caching](2026-02/docs/week-6/rate-limits-retries-caching.md) |
-| `429` or a block partway through a long paginate run | No delay between dozens of back-to-back requests | Add backoff between pages → [Rate Limits, Retries & Caching](2026-02/docs/week-6/rate-limits-retries-caching.md) |
-| Playwright infinite-scroll script never loads past the first screen | Scrolled before new content finished loading, or scrolled the wrong element | Wait for new DOM nodes / network-idle after each scroll → [Playwright & Selenium](2026-02/docs/week-6/playwright-selenium.md) |
+| `has_next: true` forever, but every page looks the same | You're being rate-limited and served a stale/cached response | Slow down → [Rate Limits, Retries & Caching](/2026-02/docs/week-6/rate-limits-retries-caching/) |
+| `429` or a block partway through a long paginate run | No delay between dozens of back-to-back requests | Add backoff between pages → [Rate Limits, Retries & Caching](/2026-02/docs/week-6/rate-limits-retries-caching/) |
+| Playwright infinite-scroll script never loads past the first screen | Scrolled before new content finished loading, or scrolled the wrong element | Wait for new DOM nodes / network-idle after each scroll → [Playwright & Selenium](/2026-02/docs/week-6/playwright-selenium/) |
 
 ## Your turn (≈15 min)
 

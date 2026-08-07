@@ -3,9 +3,9 @@
 > **When there's genuinely no API behind the page, drive a real browser — and drive it so it waits for content instead of guessing.**
 
 ⏱ ~9 min read · ~15 min hands-on
-🔗 needs: [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) · [HTTP clients](2026-02/docs/week-1/06-http-clients.md)
+🔗 needs: [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) · [HTTP clients](/2026-02/docs/week-1/06-http-clients/)
 
-Browser automation is the heavyweight option: it renders JavaScript, executes the page's own code, and sees exactly what a user sees. It's also 10–100× slower than an HTTP request and far more fragile. Use it **after** you've checked for a [hidden JSON API](2026-02/docs/week-6/hidden-json-apis.md), not before.
+Browser automation is the heavyweight option: it renders JavaScript, executes the page's own code, and sees exactly what a user sees. It's also 10–100× slower than an HTTP request and far more fragile. Use it **after** you've checked for a [hidden JSON API](/2026-02/docs/week-6/hidden-json-apis/), not before.
 
 ## Try it in 5 minutes
 
@@ -77,24 +77,24 @@ page.get_by_role("button", name="Next").click()   # auto-waits for actionable
 
 A fixed `time.sleep(3)` is simultaneously too slow (usually) and too short (occasionally) — the worst of both. Condition-based waits are faster *and* more reliable.
 
-> ⚖️ A browser executes the site's JavaScript and looks exactly like a user. That doesn't change what you're permitted to collect — [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md) still applies, and browsers make it easy to hammer a site by accident. Pair with [Rate Limits](2026-02/docs/week-6/rate-limits-retries-caching.md).
+> ⚖️ A browser executes the site's JavaScript and looks exactly like a user. That doesn't change what you're permitted to collect — [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/) still applies, and browsers make it easy to hammer a site by accident. Pair with [Rate Limits](/2026-02/docs/week-6/rate-limits-retries-caching/).
 
 ## When it fails
 
 | Symptom | Cause | Fix |
 |---|---|---|
 | `TimeoutError` waiting for a selector | Element is in an iframe, or never appears | `page.frame_locator(...)`; verify the selector in DevTools |
-| Works headed, fails headless | Site detects headless, or layout differs | Try `headless=False`; see [Anti-bot Patterns](2026-02/docs/week-6/anti-bot-patterns.md) |
+| Works headed, fails headless | Site detects headless, or layout differs | Try `headless=False`; see [Anti-bot Patterns](/2026-02/docs/week-6/anti-bot-patterns/) |
 | Empty text from a real element | Read before hydration finished | Wait on the *content*, not just the node |
 | Random flakiness | `sleep()`-based timing | Replace with `wait_for_selector` / `expect` |
-| Painfully slow at scale | Loading images, fonts, ads | Block them → [Playwright Advanced](2026-02/docs/week-6/playwright-advanced.md) |
+| Painfully slow at scale | Loading images, fonts, ads | Block them → [Playwright Advanced](/2026-02/docs/week-6/playwright-advanced/) |
 
 ## Your turn (≈15 min)
 
 1. Run `scroll_scrape.py`. Then fetch the same URL with plain `httpx` and confirm the quotes are **absent** — that contrast is the whole reason browsers exist.
 2. Switch to `headless=False` and watch it run.
 3. Rewrite the extraction using `page.get_by_role`/`get_by_text` instead of CSS classes.
-4. Add pagination: click "Next" until it disappears → [Pagination & Infinite Scroll](2026-02/docs/week-6/pagination-infinite-scroll.md).
+4. Add pagination: click "Next" until it disappears → [Pagination & Infinite Scroll](/2026-02/docs/week-6/pagination-infinite-scroll/).
 
 ## Checklist
 
@@ -109,6 +109,6 @@ A fixed `time.sleep(3)` is simultaneously too slow (usually) and too short (occa
 - [Playwright Python docs](https://playwright.dev/python/docs/intro) — the official starting point.
 - [Playwright locators](https://playwright.dev/python/docs/locators) — the recommended selector strategy.
 - [Selenium docs](https://www.selenium.dev/documentation/) — for inherited codebases.
-- [Playwright Advanced](2026-02/docs/week-6/playwright-advanced.md) — interception, saved auth, tracing, speed.
+- [Playwright Advanced](/2026-02/docs/week-6/playwright-advanced/) — interception, saved auth, tracing, speed.
 
 <!-- SOURCES: https://playwright.dev/python/docs/intro , https://playwright.dev/python/docs/locators , https://www.selenium.dev/documentation/ , https://quotes.toscrape.com/js/ -->

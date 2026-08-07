@@ -3,7 +3,7 @@
 > **A 1.2 GB image that rebuilds from scratch on every code change is a build-system bug. Multi-stage builds and correct layer order fix both size and speed.**
 
 ⏱ ~10 min read · ~20 min hands-on
-🔗 needs: [Docker & Compose](2026-02/docs/week-2/06-docker-compose.md) · [GitHub Actions Advanced](2026-02/docs/week-7/01-github-actions-advanced.md)
+🔗 needs: [Docker & Compose](/2026-02/docs/week-2/06-docker-compose/) · [GitHub Actions Advanced](/2026-02/docs/week-7/01-github-actions-advanced/)
 
 You can already write a Dockerfile. Production adds three requirements: **small** (fast pulls, less to attack), **cached** (rebuild in seconds), and **safe** (no root, no secrets baked in).
 

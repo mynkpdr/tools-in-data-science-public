@@ -3,11 +3,11 @@
 > **Search engines have already indexed your mistakes. Find them before someone else does — on domains you own.**
 
 ⏱ ~9 min read · ~20 min hands-on
-🔗 needs: [Google Dorking](2026-02/docs/week-6/google-dork.md) · [OWASP LLM Top 10](2026-02/docs/week-7/05-owasp-llm-top-10.md)
+🔗 needs: [Google Dorking](/2026-02/docs/week-6/google-dork/) · [OWASP LLM Top 10](/2026-02/docs/week-7/05-owasp-llm-top-10/)
 
-[Week 6](2026-02/docs/week-6/google-dork.md) taught operators as a *sourcing* skill. The same operators are the first tool in an attacker's kit — and therefore the first in a defender's. This page is about **auditing your own external footprint**.
+[Week 6](/2026-02/docs/week-6/google-dork/) taught operators as a *sourcing* skill. The same operators are the first tool in an attacker's kit — and therefore the first in a defender's. This page is about **auditing your own external footprint**.
 
-> ⚖️ **Scope rule, no exceptions.** Every query on this page is prefixed with a `site:` you own or are contractually authorised to test. Running exposure dorks against third parties, then acting on what you find, is unauthorised access in most jurisdictions — and it is never a course exercise. See [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md).
+> ⚖️ **Scope rule, no exceptions.** Every query on this page is prefixed with a `site:` you own or are contractually authorised to test. Running exposure dorks against third parties, then acting on what you find, is unauthorised access in most jurisdictions — and it is never a course exercise. See [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/).
 
 ## Try it in 5 minutes — audit your own footprint
 
@@ -65,7 +65,7 @@ flowchart LR
     M --> D
 ```
 
-**Rotation is non-negotiable.** Deleting a file doesn't un-leak a key — search caches, forks, and archives ([Wayback](2026-02/docs/week-6/wayback-commoncrawl.md), Common Crawl) keep copies. Treat any exposed credential as burned.
+**Rotation is non-negotiable.** Deleting a file doesn't un-leak a key — search caches, forks, and archives ([Wayback](/2026-02/docs/week-6/wayback-commoncrawl/), Common Crawl) keep copies. Treat any exposed credential as burned.
 
 Removing a page from your site doesn't clear the index either — use [Google Search Console](https://search.google.com/search-console) removals, and add `noindex` so it doesn't return.
 
@@ -84,7 +84,7 @@ Removing a page from your site doesn't clear the index either — use [Google Se
 1. Run the five audit queries against a domain you own. Write down anything unexpected.
 2. Run `gitleaks` and `trufflehog` over one of your own repos; compare their findings.
 3. For one finding (real or hypothetical), write the full remediation loop — including *which* credential you'd rotate and who you'd notify.
-4. Add a secret-scanning step to a [GitHub Actions workflow](2026-02/docs/week-7/01-github-actions-advanced.md) so it runs on every push.
+4. Add a secret-scanning step to a [GitHub Actions workflow](/2026-02/docs/week-7/01-github-actions-advanced/) so it runs on every push.
 
 ## Checklist
 

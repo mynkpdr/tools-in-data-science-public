@@ -3,7 +3,7 @@
 > **The cloud bill nobody checks is the one that ruins a month. Cap what you can, alert on the rest, and never let an agent loop spend money unattended.**
 
 ⏱ ~8 min read · ~20 min hands-on
-🔗 needs: [Serverless Functions](2026-02/docs/week-7/07-serverless-functions.md) · [Loop Engineering](2026-02/docs/week-5/loop-engineering.md)
+🔗 needs: [Serverless Functions](/2026-02/docs/week-7/07-serverless-functions/) · [Loop Engineering](/2026-02/docs/week-5/loop-engineering/)
 
 Students in this course run LLM APIs, autoscaling services, and agent loops — three of the best ways ever invented to spend money by accident. A retry loop against a paid API can burn a semester's budget overnight.
 
@@ -81,8 +81,8 @@ gcloud billing budgets create \
 
 | Trap | Why it hurts | Prevention |
 |---|---|---|
-| Agent retry loop on a paid model | Each retry is a full-context call | Attempt caps + in-code budget ([Loop Engineering](2026-02/docs/week-5/loop-engineering.md)) |
-| Long context re-sent every turn | Cost scales with conversation length | Trim history; [prompt caching](2026-02/docs/week-3/prompt-caching.md) |
+| Agent retry loop on a paid model | Each retry is a full-context call | Attempt caps + in-code budget ([Loop Engineering](/2026-02/docs/week-5/loop-engineering/)) |
+| Long context re-sent every turn | Cost scales with conversation length | Trim history; [prompt caching](/2026-02/docs/week-3/prompt-caching/) |
 | Idle GPU / VM left running | Bills per hour whether used or not | Stop it; scale-to-zero; a calendar reminder |
 | Autoscaling with no cap | A traffic spike scales to hundreds | `--max-instances` |
 | Egress and cross-region traffic | Data *out* is the charge people forget | Keep compute and storage in one region |
@@ -92,7 +92,7 @@ gcloud billing budgets create \
 
 ## Attribute the cost
 
-You can't fix what you can't attribute. **Label everything** (`project=tds`, `env=dev`, `owner=you`), and per-request, log tokens and estimated cost with a request ID — that's [observability](2026-02/docs/week-2/09-observability.md) applied to money. Then "which feature costs the most?" is a query, not a guess.
+You can't fix what you can't attribute. **Label everything** (`project=tds`, `env=dev`, `owner=you`), and per-request, log tokens and estimated cost with a request ID — that's [observability](/2026-02/docs/week-2/09-observability/) applied to money. Then "which feature costs the most?" is a query, not a guess.
 
 ## When it fails
 
@@ -123,6 +123,6 @@ You can't fix what you can't attribute. **Label everything** (`project=tds`, `en
 
 - [GCP budgets & alerts](https://cloud.google.com/billing/docs/how-to/budgets) — thresholds and notifications.
 - [AWS Budgets](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html) — the AWS equivalent.
-- [Prompt Caching (Week 3)](2026-02/docs/week-3/prompt-caching.md) — the biggest single lever on LLM cost.
+- [Prompt Caching (Week 3)](/2026-02/docs/week-3/prompt-caching/) — the biggest single lever on LLM cost.
 
 <!-- SOURCES: https://cloud.google.com/billing/docs/how-to/budgets , https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html -->

@@ -3,7 +3,7 @@
 > **Clicking through a cloud console is undocumented, unrepeatable, and unreviewable. Declare your infrastructure in files, and `git log` becomes your change history.**
 
 ⏱ ~10 min read · ~20 min hands-on
-🔗 needs: [Serverless Functions](2026-02/docs/week-7/07-serverless-functions.md) · [Git & GitHub](2026-02/docs/week-1/04-git-github.md)
+🔗 needs: [Serverless Functions](/2026-02/docs/week-7/07-serverless-functions/) · [Git & GitHub](/2026-02/docs/week-1/04-git-github/)
 
 Infrastructure as Code (IaC) means your cloud resources are declared in version-controlled files. You describe the **desired end state**; Terraform computes the diff and applies it. The wins are reproducibility, code review for infrastructure, and one command to tear a whole environment down.
 
@@ -89,7 +89,7 @@ terraform {
 | Secrets from a secret manager, not `.tf` | `.tf` files are committed; secrets must not be |
 | `plan` in CI on every PR | Reviewers see the infrastructure diff before merge |
 
-Terraform in CI is where IaC pays off: post `plan` output on the PR, and `apply` only on merge to `main` — with an [environment approval gate](2026-02/docs/week-7/01-github-actions-advanced.md).
+Terraform in CI is where IaC pays off: post `plan` output on the PR, and `apply` only on merge to `main` — with an [environment approval gate](/2026-02/docs/week-7/01-github-actions-advanced/).
 
 > ⚖️ `terraform destroy` and any plan showing `- destroy` on a stateful resource (database, bucket) deletes **real data**. Read every plan; set `force_destroy = false` and deletion protection on anything that matters.
 

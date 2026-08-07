@@ -3,7 +3,7 @@
 > **Two databases, two jobs: SQLite remembers what your scraper has seen; DuckDB answers questions about what it collected — straight off Parquet files, no server.**
 
 ⏱ ~9 min read · ~15 min hands-on
-🔗 needs: [SQLite](2026-02/docs/week-1/05-sqlite.md) · [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md)
+🔗 needs: [SQLite](/2026-02/docs/week-1/05-sqlite/) · [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/)
 
 Scraped data has two very different access patterns, and using one tool for both is why people end up with a 4 GB CSV they can't open.
 
@@ -11,13 +11,13 @@ Scraped data has two very different access patterns, and using one tool for both
 |---|---|---|
 | Job | Scraper **state**: seen-IDs, hashes, last-seen | **Analysis**: aggregate millions of rows |
 | Pattern | Many tiny keyed reads/writes | Few huge scans over columns |
-| In Week 6 | [Change Detection & Dedup](2026-02/docs/week-6/change-detection-dedup.md) | This page |
+| In Week 6 | [Change Detection & Dedup](/2026-02/docs/week-6/change-detection-dedup/) | This page |
 
 Both run in-process — no server, no Docker.
 
 ## Try it in 5 minutes — query a file with SQL
 
-If you ran the script on [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) you already have `quotes.parquet`. Query it directly — no import, no schema, no load step:
+If you ran the script on [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) you already have `quotes.parquet`. Query it directly — no import, no schema, no load step:
 
 ```bash
 uvx duckdb -c "SELECT author, count(*) n FROM 'quotes.parquet' GROUP BY author ORDER BY n DESC LIMIT 5"
@@ -113,7 +113,7 @@ SQLite decides *whether to write*; Parquet is *what you wrote*; DuckDB is *how y
 
 1. Run `duck_demo.py`; compare `demo.parquet`'s size to the same data as CSV.
 2. Re-run the aggregation over `'*.parquet'` with a glob.
-3. Write your `quotes.parquet` from [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) and find the author with the most quotes.
+3. Write your `quotes.parquet` from [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) and find the author with the most quotes.
 4. Add a `scraped_date` column, write two dated files, and query both at once.
 
 ## Checklist
@@ -128,6 +128,6 @@ SQLite decides *whether to write*; Parquet is *what you wrote*; DuckDB is *how y
 
 - [DuckDB documentation](https://duckdb.org/docs/) — start with the Python API and Parquet pages.
 - [Apache Parquet](https://parquet.apache.org/) — the format itself.
-- [Change Detection & Dedup](2026-02/docs/week-6/change-detection-dedup.md) — the SQLite half of this story.
+- [Change Detection & Dedup](/2026-02/docs/week-6/change-detection-dedup/) — the SQLite half of this story.
 
 <!-- SOURCES: https://duckdb.org/docs/ , https://parquet.apache.org/ -->

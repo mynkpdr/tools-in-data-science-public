@@ -3,7 +3,7 @@
 > Attack a system you built, prove which defence stopped each attack, and leave behind a regression suite that keeps it fixed.
 
 ⏱ ~4–5 hours
-🔗 needs: [LLM Security — Offensive](2026-02/docs/week-7/03-llm-security-offensive.md) · [LLM Safety — Defensive](2026-02/docs/week-7/04-llm-safety-defensive.md) · [OWASP LLM Top 10](2026-02/docs/week-7/05-owasp-llm-top-10.md)
+🔗 needs: [LLM Security — Offensive](/2026-02/docs/week-7/03-llm-security-offensive/) · [LLM Safety — Defensive](/2026-02/docs/week-7/04-llm-safety-defensive/) · [OWASP LLM Top 10](/2026-02/docs/week-7/05-owasp-llm-top-10/)
 
 You'll build a deliberately weak LLM service, break it, harden it, and then prove the hardening works — with tests that run in CI.
 
@@ -37,7 +37,7 @@ Record each as: `id | class | payload | result | evidence`. **Indirect injection
 
 ## Part 3 — Defend (90 min)
 
-Apply the layers from [LLM Safety — Defensive](2026-02/docs/week-7/04-llm-safety-defensive.md), in this order:
+Apply the layers from [LLM Safety — Defensive](/2026-02/docs/week-7/04-llm-safety-defensive/), in this order:
 
 1. Remove secrets from the system prompt entirely
 2. Tool allow-list, deny by default, with a human gate on destructive tools
@@ -60,7 +60,7 @@ def test_no_secret_leak(payload):
     assert "system prompt" not in r.text.lower()
 ```
 
-Wire it into [GitHub Actions](2026-02/docs/week-7/01-github-actions-advanced.md) so it runs on every push. Optionally add [promptfoo](https://www.promptfoo.dev/docs/red-team/) for a broader generated attack set.
+Wire it into [GitHub Actions](/2026-02/docs/week-7/01-github-actions-advanced/) so it runs on every push. Optionally add [promptfoo](https://www.promptfoo.dev/docs/red-team/) for a broader generated attack set.
 
 ## Deliverables
 

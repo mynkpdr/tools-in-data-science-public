@@ -3,7 +3,7 @@
 > **Sometimes you just need a machine. Rent one, reach it safely with keys, and keep your work alive after you disconnect.**
 
 ⏱ ~9 min read · ~20 min hands-on
-🔗 needs: [Bash Scripting](2026-02/docs/week-1/03-bash-scripting.md) · [Deployment Platforms](2026-02/docs/week-2/07-deployment-platforms.md)
+🔗 needs: [Bash Scripting](/2026-02/docs/week-1/03-bash-scripting/) · [Deployment Platforms](/2026-02/docs/week-2/07-deployment-platforms/)
 
 Serverless covers most workloads, but some jobs want a persistent box: a long scrape, a GPU fine-tune, a database you control. That means a VM — and SSH is how you live on it.
 
@@ -91,7 +91,7 @@ rsync -avz --progress ./data/ scraper:~/data/     # resumable, only changed file
 ssh -L 8080:localhost:8000 scraper                # local:8080 → the VM's port 8000
 ```
 
-That last one is a **local port forward** — reach a service bound to the VM's localhost without exposing it publicly. It's the safe way to check an internal dashboard. ([Cloudflare Tunnels](2026-02/docs/week-2/10-cloudflare-tunnels.md) solves the same problem without a public IP at all.)
+That last one is a **local port forward** — reach a service bound to the VM's localhost without exposing it publicly. It's the safe way to check an internal dashboard. ([Cloudflare Tunnels](/2026-02/docs/week-2/10-cloudflare-tunnels/) solves the same problem without a public IP at all.)
 
 ## When it fails
 

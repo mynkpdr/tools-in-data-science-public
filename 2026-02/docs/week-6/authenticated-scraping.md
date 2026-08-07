@@ -3,11 +3,11 @@
 > **Carry a login session in code — CSRF tokens, cookies, saved browser state — and recognise when the login *is* the line you shouldn't cross.**
 
 ⏱ ~9 min read · ~15 min hands-on
-🔗 needs: [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) · [Playwright & Selenium](2026-02/docs/week-6/playwright-selenium.md) · [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md)
+🔗 needs: [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) · [Playwright & Selenium](/2026-02/docs/week-6/playwright-selenium/) · [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/)
 
 Plenty of data sits behind a login. Sometimes you're clearly entitled to it — your own account, your own app, or an API that issues you a token. Sometimes the login is precisely the access control you must not defeat.
 
-> ⚖️ Logging into a service you don't control to extract data is usually a **Terms of Service breach**, and defeating an access control can be **unauthorised access** under computer-misuse law. Automate authentication only for **your own accounts/apps** or with explicit permission. This is the exact line [hiQ crossed](2026-02/docs/week-6/legal-ethical-scraping.md).
+> ⚖️ Logging into a service you don't control to extract data is usually a **Terms of Service breach**, and defeating an access control can be **unauthorised access** under computer-misuse law. Automate authentication only for **your own accounts/apps** or with explicit permission. This is the exact line [hiQ crossed](/2026-02/docs/week-6/legal-ethical-scraping/).
 
 ## Try it in 5 minutes — a session with a CSRF token
 
@@ -47,7 +47,7 @@ with httpx.Client(base_url=BASE, timeout=10, follow_redirects=True) as client:
 | **CSRF / hidden token** | A hidden `<input>` on the form | Scrape it, submit it with the POST |
 | **Auth header / bearer token** | An API login or OAuth flow | Send `Authorization: Bearer …` on each request |
 
-The [hidden-API trick](2026-02/docs/week-6/hidden-json-apis.md) applies here too: many logins POST to a JSON endpoint you can find in the Network tab, which is cleaner than parsing the HTML form.
+The [hidden-API trick](/2026-02/docs/week-6/hidden-json-apis/) applies here too: many logins POST to a JSON endpoint you can find in the Network tab, which is cleaner than parsing the HTML form.
 
 ## Reuse a browser login — saved storage state
 
@@ -60,11 +60,11 @@ For JavaScript-heavy logins, or an MFA step you complete by hand once, log in **
 #   context = browser.new_context(storage_state="auth.json")
 ```
 
-This is the standard Playwright pattern — details on [Playwright Advanced](2026-02/docs/week-6/playwright-advanced.md). Treat `auth.json` like a password: it *is* your session.
+This is the standard Playwright pattern — details on [Playwright Advanced](/2026-02/docs/week-6/playwright-advanced/). Treat `auth.json` like a password: it *is* your session.
 
 ## Prefer the front door: OAuth & API tokens
 
-If the service offers an OAuth API (Google, GitHub, most SaaS), use it — that's *sanctioned* authenticated access with scopes and revocation, not a workaround. You already met this in [Week 2 → Google OAuth](2026-02/docs/week-2/03-google-oauth.md).
+If the service offers an OAuth API (Google, GitHub, most SaaS), use it — that's *sanctioned* authenticated access with scopes and revocation, not a workaround. You already met this in [Week 2 → Google OAuth](/2026-02/docs/week-2/03-google-oauth/).
 
 ## When it fails
 
@@ -93,6 +93,6 @@ If the service offers an OAuth API (Google, GitHub, most SaaS), use it — that'
 
 - [quotes.toscrape.com](https://quotes.toscrape.com/login) — the login sandbox used above.
 - [Playwright — authentication & storage state](https://playwright.dev/python/docs/auth) — save once, reuse everywhere.
-- [Google OAuth (Week 2)](2026-02/docs/week-2/03-google-oauth.md) — the sanctioned way in.
+- [Google OAuth (Week 2)](/2026-02/docs/week-2/03-google-oauth/) — the sanctioned way in.
 
 <!-- SOURCES: https://quotes.toscrape.com/login , https://playwright.dev/python/docs/auth -->

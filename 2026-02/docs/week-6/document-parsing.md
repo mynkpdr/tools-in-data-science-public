@@ -3,7 +3,7 @@
 > **Most of the world's data is trapped in PDFs, Word files, and scans. Getting it out cleanly — with tables intact — is its own skill.**
 
 ⏱ ~8 min read · ~15 min hands-on
-🔗 needs: [HTML → Markdown](2026-02/docs/week-6/html-to-markdown.md) · [Vision Models for Scraping](2026-02/docs/week-6/vision-models-for-scraping.md)
+🔗 needs: [HTML → Markdown](/2026-02/docs/week-6/html-to-markdown/) · [Vision Models for Scraping](/2026-02/docs/week-6/vision-models-for-scraping/)
 
 A PDF isn't a document format so much as a set of drawing instructions. There's often no "table" in there at all — just text positioned at coordinates that *look* like a table. That's why naive extraction produces scrambled columns, and why picking the right tool matters.
 
@@ -42,7 +42,7 @@ for page_no, page in enumerate(doc, start=1):
 | Digital PDF (text layer) | **[PyMuPDF](https://pymupdf.readthedocs.io/)** | Fast, accurate, built-in table detection |
 | Complex layouts, mixed formats | **[Docling](https://github.com/docling-project/docling)** | Layout-aware; PDF/DOCX/PPTX → structured Markdown |
 | Anything → Markdown, quickly | **[MarkItDown](https://github.com/microsoft/markitdown)** | One API for PDF, DOCX, PPTX, XLSX, images |
-| Scanned pages / images | **[Surya](https://github.com/datalab-to/surya)** or a **[VLM](2026-02/docs/week-6/vision-models-for-scraping.md)** | Real OCR; multilingual, layout-aware |
+| Scanned pages / images | **[Surya](https://github.com/datalab-to/surya)** or a **[VLM](/2026-02/docs/week-6/vision-models-for-scraping/)** | Real OCR; multilingual, layout-aware |
 | Tables specifically | **[Camelot](https://camelot-py.readthedocs.io/)** / PyMuPDF `find_tables()` | Purpose-built for ruled and whitespace tables |
 
 ```mermaid
@@ -59,7 +59,7 @@ flowchart TD
 
 ## Always convert to Markdown for LLMs
 
-Whatever the source, land on Markdown before an LLM sees it: it keeps headings and tables meaningful while dropping the noise, exactly as in [HTML → Markdown](2026-02/docs/week-6/html-to-markdown.md). Preserve **page numbers** as you go — citations become verifiable, which matters enormously for [RAG grounding](2026-02/docs/week-4/llm-grounding.md).
+Whatever the source, land on Markdown before an LLM sees it: it keeps headings and tables meaningful while dropping the noise, exactly as in [HTML → Markdown](/2026-02/docs/week-6/html-to-markdown/). Preserve **page numbers** as you go — citations become verifiable, which matters enormously for [RAG grounding](/2026-02/docs/week-4/llm-grounding/).
 
 ## When it fails
 

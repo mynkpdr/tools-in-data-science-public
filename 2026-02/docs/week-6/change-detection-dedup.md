@@ -3,7 +3,7 @@
 > **A scheduled scraper that re-saves the same rows every night is just an expensive clock. Store state, hash content, and record only what actually changed.**
 
 ⏱ ~8 min read · ~15 min hands-on
-🔗 needs: [DuckDB + Parquet](2026-02/docs/week-6/duckdb-parquet.md) · [Scheduled Scraping](2026-02/docs/week-6/scheduled-scraping.md)
+🔗 needs: [DuckDB + Parquet](/2026-02/docs/week-6/duckdb-parquet/) · [Scheduled Scraping](/2026-02/docs/week-6/scheduled-scraping/)
 
 The first run of a scraper is the easy one. The interesting question is the second: *what's new?* Answer it with two cheap ideas — a **stable ID** for every record, and a **content hash** to detect edits.
 
@@ -36,7 +36,7 @@ flowchart LR
 
 ## SQLite holds the state
 
-This is exactly the OLTP job [SQLite is built for](2026-02/docs/week-6/duckdb-parquet.md): small, keyed, frequent lookups. One table, one `UPSERT`, and your scraper becomes incremental:
+This is exactly the OLTP job [SQLite is built for](/2026-02/docs/week-6/duckdb-parquet/): small, keyed, frequent lookups. One table, one `UPSERT`, and your scraper becomes incremental:
 
 ```python
 # /// script
@@ -120,7 +120,7 @@ Run it once: `{'new': 100, 'changed': 0, 'unchanged': 0}`. Run it again: `{'new'
 `last_seen` quietly gives you two more capabilities:
 
 - **Disappearances** — anything whose `last_seen` is older than your last successful run is gone from the source. Mark it inactive rather than deleting; that's a data point too.
-- **History** — to keep *every* version rather than just the latest, append each `(id, content_hash, scraped_at, payload)` to a Parquet file. SQLite tracks current state; Parquet is your archive → [DuckDB + Parquet](2026-02/docs/week-6/duckdb-parquet.md).
+- **History** — to keep *every* version rather than just the latest, append each `(id, content_hash, scraped_at, payload)` to a Parquet file. SQLite tracks current state; Parquet is your archive → [DuckDB + Parquet](/2026-02/docs/week-6/duckdb-parquet/).
 
 ## When it fails
 

@@ -3,7 +3,7 @@
 > Assemble a fully-cited profile of an organisation's public footprint, where every single claim carries its source, timestamp, and confidence level.
 
 ⏱ ~3–4 hours
-🔗 needs: [OSINT — Infrastructure & Records](2026-02/docs/week-6/osint.md) · [Google Dorking](2026-02/docs/week-6/google-dork.md) · [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md)
+🔗 needs: [OSINT — Infrastructure & Records](/2026-02/docs/week-6/osint/) · [Google Dorking](/2026-02/docs/week-6/google-dork/) · [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/)
 
 The skill being graded is **not** collection — anyone can paste tool output. It's **verification**: knowing what your evidence actually supports, and saying so honestly.
 
@@ -24,7 +24,7 @@ The skill being graded is **not** collection — anyone can paste tool output. I
 |---|---|
 | Domain & DNS | RDAP/WHOIS, `dig`, MX/TXT records |
 | Certificates | [crt.sh](https://crt.sh/) — hostnames over time |
-| Web history | [Wayback](2026-02/docs/week-6/wayback-commoncrawl.md) — how the site changed |
+| Web history | [Wayback](/2026-02/docs/week-6/wayback-commoncrawl/) — how the site changed |
 | Public records | Corporate filings, OpenCorporates, government open data |
 | Published documents | `site:` + `filetype:pdf` dorks; annual reports |
 | Public code | GitHub org repos, published packages |
@@ -43,7 +43,7 @@ claim | source URL or exact command | retrieved (UTC) | confidence | corroborati
 
 **6. Write a limitations section.** What you couldn't determine, what might be wrong, what's likely out of date. **This section is worth more marks than a longer findings list.**
 
-**7. Automate one part.** One reproducible script — e.g. the [CT-log enumerator](2026-02/docs/week-6/osint.md) or a [Wayback timeline](2026-02/docs/week-6/wayback-commoncrawl.md) — committed and runnable.
+**7. Automate one part.** One reproducible script — e.g. the [CT-log enumerator](/2026-02/docs/week-6/osint/) or a [Wayback timeline](/2026-02/docs/week-6/wayback-commoncrawl/) — committed and runnable.
 
 ## Deliverables
 
@@ -77,5 +77,5 @@ Note the weighting: **half the marks are for epistemic honesty**, not for how mu
 ## Stretch goals
 
 - Build a five-year timeline of the org's infrastructure from CT logs plus Wayback snapshots.
-- Do it for **your own** project/domain and write the remediation list → [Dorking for Recon](2026-02/docs/week-7/dorking-recon.md).
+- Do it for **your own** project/domain and write the remediation list → [Dorking for Recon](/2026-02/docs/week-7/dorking-recon/).
 - Write a short note on which single source proved *least* reliable, with evidence.

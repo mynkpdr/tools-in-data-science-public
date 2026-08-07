@@ -3,7 +3,7 @@
 > **The industry's shared checklist of how LLM applications actually get broken — and the one to run your own project against before it ships.**
 
 ⏱ ~10 min read · ~20 min hands-on
-🔗 needs: [LLM Security — Offensive](2026-02/docs/week-7/03-llm-security-offensive.md) · [LLM Safety — Defensive](2026-02/docs/week-7/04-llm-safety-defensive.md)
+🔗 needs: [LLM Security — Offensive](/2026-02/docs/week-7/03-llm-security-offensive/) · [LLM Safety — Defensive](/2026-02/docs/week-7/04-llm-safety-defensive/)
 
 [OWASP](https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/) maintains the reference list of LLM-specific risks. It's the vocabulary security teams use, so knowing the codes is genuinely useful in a review: "that's LLM06" lands faster than a paragraph.
 
@@ -26,7 +26,7 @@ Prompt injection has held the top spot across editions; sensitive information di
 
 ## Try it in 5 minutes — audit an app you've built
 
-Take your Project 1, your [RAG chatbot](2026-02/docs/labs/week-4/capstone-bs-degree-chatbot.md), or your [research agent](2026-02/docs/labs/week-5/capstone-autonomous-research-agent.md) and answer honestly:
+Take your Project 1, your [RAG chatbot](/2026-02/docs/labs/week-4/capstone-bs-degree-chatbot/), or your [research agent](/2026-02/docs/labs/week-5/capstone-autonomous-research-agent/) and answer honestly:
 
 ```text
 LLM01  Does any untrusted text (web page, PDF, user upload) reach the prompt?
@@ -73,7 +73,7 @@ flowchart LR
 | Agent follows instructions found in a scraped page | LLM01 | Constrain capability; treat retrieved text as data, never instructions |
 | Chatbot repeats another user's data | LLM02 / LLM08 | Per-tenant isolation in the vector store; scrub PII |
 | Rendered answer executes script | LLM05 | Escape output; never `innerHTML` |
-| One user's question costs ₹5,000 | LLM10 | Token caps, timeouts, per-user quotas → [Cost Alerting](2026-02/docs/week-7/09-cost-alerting.md) |
+| One user's question costs ₹5,000 | LLM10 | Token caps, timeouts, per-user quotas → [Cost Alerting](/2026-02/docs/week-7/09-cost-alerting/) |
 | System prompt posted on Reddit | LLM07 | Assume it's public; keep no secrets in it |
 
 ## Your turn (≈20 min)
@@ -81,7 +81,7 @@ flowchart LR
 1. Run the six-question audit against one of your own projects; write findings as `LLM0x — evidence — fix`.
 2. Fix the cheapest one *today* (usually a token cap or output escaping).
 3. For LLM06, write down the worst thing your agent could do unsupervised, and add the gate that prevents it.
-4. Take your list into [the red-team lab](2026-02/docs/labs/week-7/01-red-team-your-api-guardrails.md) and try to prove each finding.
+4. Take your list into [the red-team lab](/2026-02/docs/labs/week-7/01-red-team-your-api-guardrails/) and try to prove each finding.
 
 ## Checklist
 
@@ -95,6 +95,6 @@ flowchart LR
 
 - [OWASP Top 10 for LLM Applications 2025](https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/) — the authoritative document.
 - [OWASP GenAI Security Project](https://genai.owasp.org/) — cheat sheets and agentic-security guidance.
-- [LLM Security — Offensive](2026-02/docs/week-7/03-llm-security-offensive.md) — putting these to the test.
+- [LLM Security — Offensive](/2026-02/docs/week-7/03-llm-security-offensive/) — putting these to the test.
 
 <!-- SOURCES: https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/ , https://genai.owasp.org/ -->

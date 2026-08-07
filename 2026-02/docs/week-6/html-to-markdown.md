@@ -3,11 +3,11 @@
 > **Raw HTML is 90% navigation, scripts, and cookie banners. Strip it to clean Markdown and you cut your token bill while improving the model's answers.**
 
 ⏱ ~8 min read · ~12 min hands-on
-🔗 needs: [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) · [Document Parsing](2026-02/docs/week-6/document-parsing.md)
+🔗 needs: [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) · [Document Parsing](/2026-02/docs/week-6/document-parsing/)
 
 Feeding raw HTML to an LLM wastes tokens on markup the model doesn't need and buries the actual content in boilerplate. Converting to Markdown first is one of the highest-leverage steps in any scrape-to-LLM pipeline.
 
-> **First, though:** if the page has a [hidden JSON API](2026-02/docs/week-6/hidden-json-apis.md), use that instead. Structured JSON beats converted prose every time.
+> **First, though:** if the page has a [hidden JSON API](/2026-02/docs/week-6/hidden-json-apis/), use that instead. Structured JSON beats converted prose every time.
 
 ## Try it in 5 minutes
 
@@ -42,7 +42,7 @@ print(f"\n--- HTML {len(downloaded):,} chars → Markdown {len(markdown):,} char
 |---|---|---|
 | **[trafilatura](https://trafilatura.readthedocs.io/)** | Article/main-content extraction from web pages | Best default: strips nav, ads, footers. `output_format="markdown"` |
 | **[markdownify](https://pypi.org/project/markdownify/)** | Faithful HTML→MD of a fragment you already isolated | Converts *everything* — no boilerplate removal |
-| **[MarkItDown](https://github.com/microsoft/markitdown)** | PDFs, DOCX, PPTX, XLSX, images → Markdown | Microsoft; many formats, one API → [Document Parsing](2026-02/docs/week-6/document-parsing.md) |
+| **[MarkItDown](https://github.com/microsoft/markitdown)** | PDFs, DOCX, PPTX, XLSX, images → Markdown | Microsoft; many formats, one API → [Document Parsing](/2026-02/docs/week-6/document-parsing/) |
 | **[Jina Reader](https://jina.ai/reader/)** | One hosted call: `https://r.jina.ai/<url>` | Zero setup, renders JS; a third party sees your URLs |
 
 The distinction that matters: **trafilatura decides what's worth keeping**; **markdownify converts whatever you hand it**. Use trafilatura on a full page, markdownify on a `<div>` you already selected.
@@ -66,10 +66,10 @@ Self-hosting (trafilatura/markdownify) is free, private, and has no rate limit �
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| Empty output | JS-rendered page — no content in the HTML | Render with [Playwright](2026-02/docs/week-6/playwright-selenium.md) first, then convert |
+| Empty output | JS-rendered page — no content in the HTML | Render with [Playwright](/2026-02/docs/week-6/playwright-selenium/) first, then convert |
 | Main content dropped | Aggressive extraction on an unusual layout | Loosen with `favor_recall=True`, or select the element yourself + markdownify |
 | Nav/ads still present | Used markdownify on the whole page | Use trafilatura, or select the content node first |
-| Tables mangled | Complex/nested tables | `include_tables=True`; for real data prefer the [underlying API](2026-02/docs/week-6/hidden-json-apis.md) |
+| Tables mangled | Complex/nested tables | `include_tables=True`; for real data prefer the [underlying API](/2026-02/docs/week-6/hidden-json-apis/) |
 | Links lost | Default drops them | `include_links=True` |
 
 ## Your turn (≈12 min)

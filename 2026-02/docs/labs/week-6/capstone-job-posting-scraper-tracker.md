@@ -3,11 +3,11 @@
 > Build a scraper that runs itself, notices what changed, and answers questions about the market.
 
 ⏱ ~6–8 hours
-🔗 needs: [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) · [Change Detection & Dedup](2026-02/docs/week-6/change-detection-dedup.md) · [DuckDB + Parquet](2026-02/docs/week-6/duckdb-parquet.md) · [Scheduled Scraping](2026-02/docs/week-6/scheduled-scraping.md)
+🔗 needs: [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) · [Change Detection & Dedup](/2026-02/docs/week-6/change-detection-dedup/) · [DuckDB + Parquet](/2026-02/docs/week-6/duckdb-parquet/) · [Scheduled Scraping](/2026-02/docs/week-6/scheduled-scraping/)
 
 Anyone can scrape a page once. This capstone is about the harder, more valuable thing: a pipeline that runs unattended for weeks, doesn't duplicate data, doesn't get banned, and produces a dataset worth querying.
 
-> ⚖️ **Choose your targets before you write code.** Read each site's `robots.txt` and Terms. Prefer sites with a public API or feed, and job boards that permit it. Job posts contain **personal data** (recruiter names, emails) — collect only the fields your questions need, and never publish personal contact details. Your submission must include the [decision record](2026-02/docs/week-6/legal-ethical-scraping.md) for each source. A source you can't justify is a source you don't scrape.
+> ⚖️ **Choose your targets before you write code.** Read each site's `robots.txt` and Terms. Prefer sites with a public API or feed, and job boards that permit it. Job posts contain **personal data** (recruiter names, emails) — collect only the fields your questions need, and never publish personal contact details. Your submission must include the [decision record](/2026-02/docs/week-6/legal-ethical-scraping/) for each source. A source you can't justify is a source you don't scrape.
 
 ## What you're building
 
@@ -26,10 +26,10 @@ flowchart LR
 ## Requirements
 
 **1. Acquire — two different sources.** At least two job sources, each justified in your decision record.
-- Try hardest for a [hidden JSON API](2026-02/docs/week-6/hidden-json-apis.md); most job boards have one. Document how you found it (or why there isn't one).
-- Fall back to [Playwright](2026-02/docs/week-6/playwright-selenium.md) only where necessary, and say why.
-- Handle [pagination](2026-02/docs/week-6/pagination-infinite-scroll.md) with an explicit stop condition and a `MAX_PAGES` cap.
-- Be polite: [rate limits, backoff, and caching](2026-02/docs/week-6/rate-limits-retries-caching.md).
+- Try hardest for a [hidden JSON API](/2026-02/docs/week-6/hidden-json-apis/); most job boards have one. Document how you found it (or why there isn't one).
+- Fall back to [Playwright](/2026-02/docs/week-6/playwright-selenium/) only where necessary, and say why.
+- Handle [pagination](/2026-02/docs/week-6/pagination-infinite-scroll/) with an explicit stop condition and a `MAX_PAGES` cap.
+- Be polite: [rate limits, backoff, and caching](/2026-02/docs/week-6/rate-limits-retries-caching/).
 
 **2. Normalise — a validated schema.** Every record conforms to a Pydantic model; rows that fail are quarantined with the reason, not silently dropped.
 
@@ -51,7 +51,7 @@ class JobPosting(BaseModel):
 
 **4. Store as dated Parquet.** `data/date=YYYY-MM-DD/postings.parquet`, so DuckDB can glob the history.
 
-**5. Schedule it.** A [GitHub Actions cron](2026-02/docs/week-6/scheduled-scraping.md) running daily that commits only when data changed, and fails loudly if it collects suspiciously few rows.
+**5. Schedule it.** A [GitHub Actions cron](/2026-02/docs/week-6/scheduled-scraping/) running daily that commits only when data changed, and fails loudly if it collects suspiciously few rows.
 
 **6. Answer questions.** A DuckDB-backed dashboard (Streamlit, or static HTML + a generated JSON) showing at least:
 - Postings per day, and the trend over your collection window
@@ -86,7 +86,7 @@ class JobPosting(BaseModel):
 - Fuzzy-match the same role posted across both sources (entity resolution).
 - Extract required skills from descriptions with an LLM into a validated schema — then measure how often it's wrong.
 - Alert (email/Discord) when a posting matching your criteria appears.
-- Backfill history from the [Wayback Machine](2026-02/docs/week-6/wayback-commoncrawl.md) to extend your window past your start date.
+- Backfill history from the [Wayback Machine](/2026-02/docs/week-6/wayback-commoncrawl/) to extend your window past your start date.
 
 ## Checklist before you submit
 

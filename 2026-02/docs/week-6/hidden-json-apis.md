@@ -3,7 +3,7 @@
 > **The page you want to scrape has already done the work for you.** Find the JSON endpoint its own JavaScript calls, and skip the HTML entirely.
 
 ⏱ ~8 min read · ~15 min hands-on
-🔗 needs: [HTTP clients](2026-02/docs/week-1/06-http-clients.md) · browser DevTools (Network tab)
+🔗 needs: [HTTP clients](/2026-02/docs/week-1/06-http-clients/) · browser DevTools (Network tab)
 
 Most modern sites load a nearly-empty HTML shell, then fetch their real data as JSON from a backend API. If you find that request, you get clean, structured data — no brittle CSS selectors, no headless browser, often 100× faster. This is the **first thing to try** on any dynamic site, before you reach for Playwright.
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
 
 Notice what the API handed you for free: a `has_next` flag so you know when to stop, and a stable page structure. You wrote a loop, not a fragile HTML parser.
 
-> ⚖️ **Before you replay a request against a real site**, check its Terms of Service and `robots.txt`, and keep your rate low. An internal API being reachable is not the same as being allowed. See [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md).
+> ⚖️ **Before you replay a request against a real site**, check its Terms of Service and `robots.txt`, and keep your rate low. An internal API being reachable is not the same as being allowed. See [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/).
 
 ## When it fails
 
@@ -97,8 +97,8 @@ Copying the URL alone often isn't enough — the browser sent headers or cookies
 | `403 Forbidden` | Server checks `Referer` / `User-Agent` / `X-Requested-With` | Send the same headers the browser did |
 | `401 Unauthorized` | Endpoint needs a token | Copy the `Authorization` header or cookie from the request |
 | Empty result, no error | Needs a session cookie set by the HTML page | Hit the page first with an `httpx.Client`, reuse its cookies |
-| Works once, then blocks you | Rate limit or expiring token | Slow down; refresh the token → [Rate Limits, Retries & Caching](2026-02/docs/week-6/rate-limits-retries-caching.md) |
-| No JSON anywhere in Fetch/XHR | Data is server-rendered into the HTML | This trick won't help — parse the HTML or use [Playwright](2026-02/docs/week-6/playwright-selenium.md) |
+| Works once, then blocks you | Rate limit or expiring token | Slow down; refresh the token → [Rate Limits, Retries & Caching](/2026-02/docs/week-6/rate-limits-retries-caching/) |
+| No JSON anywhere in Fetch/XHR | Data is server-rendered into the HTML | This trick won't help — parse the HTML or use [Playwright](/2026-02/docs/week-6/playwright-selenium/) |
 
 **Pro tip:** in the Network tab, use **Search** (`Ctrl/Cmd+F`) and type a value you can see on the page (an author's name, a price). It jumps straight to the request that contains it — faster than reading every row. Also look for URLs with `api`, `graphql`, `/v1/`, `.json`, or `query` in them.
 
@@ -106,7 +106,7 @@ Copying the URL alone often isn't enough — the browser sent headers or cookies
 
 1. Run the script above with `uv run hidden_api.py` and confirm you get `quotes.parquet` (~100 rows).
 2. Pick a **different** endpoint on the same sandbox: open [`quotes.toscrape.com/api/quotes?page=1`](https://quotes.toscrape.com/api/quotes?page=1) and add filtering — collect only quotes tagged `love`. (Hint: the JSON also carries a `tags` list per quote.)
-3. Query your Parquet without loading it into Python — this is a one-liner with [DuckDB](2026-02/docs/week-6/duckdb-parquet.md):
+3. Query your Parquet without loading it into Python — this is a one-liner with [DuckDB](/2026-02/docs/week-6/duckdb-parquet/):
    ```bash
    duckdb -c "SELECT author, count(*) n FROM 'quotes.parquet' GROUP BY author ORDER BY n DESC LIMIT 5"
    ```

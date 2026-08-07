@@ -3,7 +3,7 @@
 > **Intercept the network, reuse a saved login, and block the junk — the difference between a browser script that crawls and one that flies.**
 
 ⏱ ~9 min read · ~15 min hands-on
-🔗 needs: [Playwright & Selenium](2026-02/docs/week-6/playwright-selenium.md) · [Authenticated Scraping](2026-02/docs/week-6/authenticated-scraping.md)
+🔗 needs: [Playwright & Selenium](/2026-02/docs/week-6/playwright-selenium/) · [Authenticated Scraping](/2026-02/docs/week-6/authenticated-scraping/)
 
 Once basic automation works, three techniques make it production-grade: **request interception**, **saved authentication state**, and **tracing**. Together they typically cut runtime by 3–5× and eliminate most flakiness.
 
@@ -58,7 +58,7 @@ print(f"blocking: {load(True):.2f}s")
 
 ## Capture the API the page calls
 
-Interception works in the other direction too — you can *read* responses the page receives, which hands you the [hidden JSON API](2026-02/docs/week-6/hidden-json-apis.md) without opening DevTools:
+Interception works in the other direction too — you can *read* responses the page receives, which hands you the [hidden JSON API](/2026-02/docs/week-6/hidden-json-apis/) without opening DevTools:
 
 ```python
 page.on("response", lambda r: print(r.url) if "api" in r.url and r.ok else None)
@@ -81,7 +81,7 @@ Logging in on every run is slow and suspicious — and impossible with MFA. Do i
 context = browser.new_context(storage_state="auth.json")
 ```
 
-`auth.json` holds cookies and `localStorage` — it **is** your session. Never commit it; add it to `.gitignore` and treat it like a password. See [Authenticated Scraping](2026-02/docs/week-6/authenticated-scraping.md) for when this is appropriate at all.
+`auth.json` holds cookies and `localStorage` — it **is** your session. Never commit it; add it to `.gitignore` and treat it like a password. See [Authenticated Scraping](/2026-02/docs/week-6/authenticated-scraping/) for when this is appropriate at all.
 
 ## Debug with a trace, not print statements
 
@@ -107,14 +107,14 @@ You get a timeline with a DOM snapshot at every step — for headless failures o
 | `storage_state` stops working | Session expired or is IP/UA-bound | Re-harvest; keep the same UA and network path |
 | `networkidle` never fires | Page polls or holds a websocket open | Wait for a specific selector instead |
 | Memory grows over a long run | Contexts/pages never closed | One context per job; close in a `finally` |
-| Fails only on CI | No display, different UA, datacenter IP | Use the trace; see [Anti-bot Patterns](2026-02/docs/week-6/anti-bot-patterns.md) |
+| Fails only on CI | No display, different UA, datacenter IP | Use the trace; see [Anti-bot Patterns](/2026-02/docs/week-6/anti-bot-patterns/) |
 
 ## Your turn (≈15 min)
 
 1. Run `fast_browser.py` and record both timings.
 2. Attach the `page.on("response", …)` listener to a real site and note any JSON endpoints it reveals.
 3. Capture a `trace.zip` and open it with `show-trace`.
-4. Add `image`/`font` blocking to your solution from [Playwright & Selenium](2026-02/docs/week-6/playwright-selenium.md) and compare.
+4. Add `image`/`font` blocking to your solution from [Playwright & Selenium](/2026-02/docs/week-6/playwright-selenium/) and compare.
 
 ## Checklist
 

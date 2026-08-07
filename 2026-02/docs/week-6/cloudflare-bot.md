@@ -3,11 +3,11 @@
 > **Understand *exactly* how Cloudflare decides you're a bot — then use the legitimate ways through, and know what it costs to fetch a page anyway.**
 
 ⏱ ~10 min read · ~15 min hands-on
-🔗 needs: [Anti-bot Patterns](2026-02/docs/week-6/anti-bot-patterns.md) · [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md) · [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md)
+🔗 needs: [Anti-bot Patterns](/2026-02/docs/week-6/anti-bot-patterns/) · [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/) · [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/)
 
 Cloudflare sits in front of a large share of the web. A plain `httpx` or `requests` call often gets a `403` or an endless "checking your browser" loop, while Chrome loads the same page instantly. That gap isn't magic — it's four specific signals. Once you can name them, you know your options.
 
-> ⚖️ This page teaches how detection works so you can access data **you are allowed to** — your own sites, sandboxes, or targets you have permission for. Getting past a bot wall does **not** grant permission; Terms and law still decide. See [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md).
+> ⚖️ This page teaches how detection works so you can access data **you are allowed to** — your own sites, sandboxes, or targets you have permission for. Getting past a bot wall does **not** grant permission; Terms and law still decide. See [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/).
 
 ## Try it in 5 minutes — see the fingerprint gap
 
@@ -68,10 +68,10 @@ Cloudflare's own docs describe the [bot score](https://developers.cloudflare.com
 
 Before you spend a day matching fingerprints, spend five minutes looking for a door that's already open:
 
-1. **Official API, data feed, or sitemap.** Faster and stable. See [Sitemaps, RSS & Structured Data](2026-02/docs/week-6/sitemaps-rss-jsonld.md).
-2. **Public archives.** [Wayback Machine & Common Crawl](2026-02/docs/week-6/wayback-commoncrawl.md) already have the page — and Cloudflare never sees you.
+1. **Official API, data feed, or sitemap.** Faster and stable. See [Sitemaps, RSS & Structured Data](/2026-02/docs/week-6/sitemaps-rss-jsonld/).
+2. **Public archives.** [Wayback Machine & Common Crawl](/2026-02/docs/week-6/wayback-commoncrawl/) already have the page — and Cloudflare never sees you.
 3. **Ask.** Email the operator for an API key or permission. Many say yes.
-4. **You own the site?** Allow-list your own crawler in the Cloudflare dashboard. (Running Cloudflare on *your* API is [Week 7](2026-02/docs/week-7/cloudflare-defender.md).)
+4. **You own the site?** Allow-list your own crawler in the Cloudflare dashboard. (Running Cloudflare on *your* API is [Week 7](/2026-02/docs/week-7/cloudflare-defender/).)
 
 ## When you must fetch it yourself — matching a real browser
 
@@ -96,7 +96,7 @@ For a target you're permitted to access, you close the gaps in order of effort:
 1. Run `tls_gap.py` and record the two JA3 hashes. In one sentence, explain which one Cloudflare blocks and why.
 2. Add a third line that impersonates a different browser (`impersonate="safari"`), and confirm the fingerprint changes again.
 3. Visit Cloudflare's public [Turnstile demo](https://developers.cloudflare.com/turnstile/) and watch a *managed challenge* run in your own browser — that JS is exactly what a bare HTTP client can't do.
-4. **Defender's view (optional):** skim how you'd put this protection in front of *your own* API — [Week 7 → Cloudflare (defender's side)](2026-02/docs/week-7/cloudflare-defender.md).
+4. **Defender's view (optional):** skim how you'd put this protection in front of *your own* API — [Week 7 → Cloudflare (defender's side)](/2026-02/docs/week-7/cloudflare-defender/).
 
 ## Checklist
 

@@ -3,7 +3,7 @@
 > **Someone already crawled the web for you. Get the page — and its entire history — without sending the target a single request.**
 
 ⏱ ~9 min read · ~15 min hands-on
-🔗 needs: [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md) · [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md)
+🔗 needs: [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/) · [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/)
 
 Two public archives cover a large share of the web: the **Internet Archive's Wayback Machine** (snapshots of individual URLs over time) and **Common Crawl** (petabyte-scale crawls released free for research). Reach for them when a site blocks you, when you need *history* rather than the current page, or when you need breadth no polite scraper could achieve.
 
@@ -76,7 +76,7 @@ curl -s 'https://index.commoncrawl.org/CC-MAIN-2026-30-index?url=iitm.ac.in/*&ou
 
 Each line is a JSON record pointing into a **WARC** file (the raw HTTP request/response, stored on S3 with byte offsets) — so you can fetch just the bytes for one page instead of downloading a petabyte.
 
-> ⚖️ Archives are a legitimate source, but the **content** in them still has an owner. Copyright and personal-data rules apply exactly as they would on the live site — see [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md). Be gentle with these APIs too: they're free public infrastructure.
+> ⚖️ Archives are a legitimate source, but the **content** in them still has an owner. Copyright and personal-data rules apply exactly as they would on the live site — see [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/). Be gentle with these APIs too: they're free public infrastructure.
 
 ## When it fails
 

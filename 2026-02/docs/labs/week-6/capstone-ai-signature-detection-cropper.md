@@ -3,7 +3,7 @@
 > Find handwritten signatures on scanned documents, crop them out, verify them with a second model, and be honest about your error rate.
 
 ⏱ ~6–8 hours
-🔗 needs: [Vision Models for Scraping](2026-02/docs/week-6/vision-models-for-scraping.md) · [Image Processing Pipeline](2026-02/docs/week-6/image-processing-pipeline.md) · [Document Parsing](2026-02/docs/week-6/document-parsing.md)
+🔗 needs: [Vision Models for Scraping](/2026-02/docs/week-6/vision-models-for-scraping/) · [Image Processing Pipeline](/2026-02/docs/week-6/image-processing-pipeline/) · [Document Parsing](/2026-02/docs/week-6/document-parsing/)
 
 A realistic document-AI pipeline: detect a region, crop it, and use a **second, independent** model to check the first one. The interesting engineering is in the verification and the measurement, not the detection call.
 
@@ -26,7 +26,7 @@ flowchart LR
 
 **1. Build a test set with ground truth.** At least 30 document images: some with one signature, some with several, and **some with none** (the negative cases are where naive pipelines fail). Record the true bounding boxes, or at minimum the true signature *count* per page, in a `ground_truth.json`.
 
-**2. Pre-process.** Grayscale, deskew, and threshold before detection — see [Image Processing Pipeline](2026-02/docs/week-6/image-processing-pipeline.md). Show a before/after for one image.
+**2. Pre-process.** Grayscale, deskew, and threshold before detection — see [Image Processing Pipeline](/2026-02/docs/week-6/image-processing-pipeline/). Show a before/after for one image.
 
 **3. Detect.** Locate candidate signature regions. Any approach is acceptable — a zero-shot vision model prompted for bounding boxes, an object detector, or classical CV (contour analysis on ink-dense regions). **Justify your choice**, and note that classical CV is a legitimate answer here if it works.
 

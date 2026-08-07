@@ -3,7 +3,7 @@
 > **You've spent Week 6 getting past bot protection. Now put it in front of your own API and watch the traffic from the other side of the glass.**
 
 ⏱ ~9 min read · ~20 min hands-on
-🔗 needs: [Cloudflare Bot Protection](2026-02/docs/week-6/cloudflare-bot.md) · [Cloudflare Tunnels](2026-02/docs/week-2/10-cloudflare-tunnels.md) · [FastAPI](2026-02/docs/week-2/01-fastapi.md)
+🔗 needs: [Cloudflare Bot Protection](/2026-02/docs/week-6/cloudflare-bot/) · [Cloudflare Tunnels](/2026-02/docs/week-2/10-cloudflare-tunnels/) · [FastAPI](/2026-02/docs/week-2/01-fastapi/)
 
 Every API you ship will be scraped, credential-stuffed, and scanned. The defences you studied as obstacles in Week 6 are the ones you now have to *configure* — and the interesting part is that the goal is never "block all bots." It's to let the right ones through cheaply while making the wrong ones expensive.
 
@@ -98,7 +98,7 @@ The most common self-inflicted outage in bot management is over-blocking:
 - **Whitelist verified bots**, always.
 - **Rate limits are gentler than blocks.** For scrapers that are merely enthusiastic, throttle instead of banning.
 
-Rate limiting at the edge complements the application-level [backoff you built in Week 6](2026-02/docs/week-6/rate-limits-retries-caching.md) — same idea, opposite side.
+Rate limiting at the edge complements the application-level [backoff you built in Week 6](/2026-02/docs/week-6/rate-limits-retries-caching/) — same idea, opposite side.
 
 > ⚖️ Deploy these on **your own** domain or a course sandbox. Configuring security products on infrastructure you don't control is unauthorised change, not learning.
 
@@ -116,7 +116,7 @@ Rate limiting at the edge complements the application-level [backoff you built i
 ## Your turn (≈20 min)
 
 1. Add Turnstile to a form with the test keys; confirm the endpoint **rejects** a POST with no token.
-2. Put a site behind Cloudflare (or use a [tunnel](2026-02/docs/week-2/10-cloudflare-tunnels.md)) and write one WAF rule in **Log** mode.
+2. Put a site behind Cloudflare (or use a [tunnel](/2026-02/docs/week-2/10-cloudflare-tunnels/)) and write one WAF rule in **Log** mode.
 3. Hit it with a plain `httpx` script and then a browser; compare how each is scored/logged.
 4. Point your own Week 6 scraper at it. You now know both sides — write three sentences on which defence was hardest to get past, and why.
 

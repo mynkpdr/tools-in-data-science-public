@@ -3,7 +3,7 @@
 > **Once a workflow works, make it fast, safe, and reusable: cache the slow parts, matrix the repetitive parts, and stop handing every job write access to your repo.**
 
 ⏱ ~10 min read · ~20 min hands-on
-🔗 needs: [Git & GitHub](2026-02/docs/week-1/04-git-github.md) · [Scheduled Scraping](2026-02/docs/week-6/scheduled-scraping.md)
+🔗 needs: [Git & GitHub](/2026-02/docs/week-1/04-git-github/) · [Scheduled Scraping](/2026-02/docs/week-6/scheduled-scraping/)
 
 You've used Actions to run a scheduled scraper. Production CI/CD adds three demands: it must be **fast** (nobody waits 20 minutes), **safe** (a workflow is code with access to your secrets), and **reusable** (don't copy-paste YAML across ten repos).
 

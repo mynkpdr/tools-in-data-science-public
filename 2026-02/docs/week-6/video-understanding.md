@@ -3,9 +3,9 @@
 > **A video is frames plus audio plus time. Split it into those three, and a problem that looked impossible becomes three you already know how to solve.**
 
 ⏱ ~8 min read · ~12 min hands-on
-🔗 needs: [Speech AI](2026-02/docs/week-6/speech-ai.md) · [Vision Models for Scraping](2026-02/docs/week-6/vision-models-for-scraping.md)
+🔗 needs: [Speech AI](/2026-02/docs/week-6/speech-ai/) · [Vision Models for Scraping](/2026-02/docs/week-6/vision-models-for-scraping/)
 
-Never treat video as an opaque blob. Decompose it: **audio** → [transcript](2026-02/docs/week-6/speech-ai.md); **frames** → [vision models](2026-02/docs/week-6/vision-models-for-scraping.md); **time** → the index that ties them together.
+Never treat video as an opaque blob. Decompose it: **audio** → [transcript](/2026-02/docs/week-6/speech-ai/); **frames** → [vision models](/2026-02/docs/week-6/vision-models-for-scraping/); **time** → the index that ties them together.
 
 ## Try it in 5 minutes — ffmpeg is the whole toolkit
 
@@ -79,7 +79,7 @@ Some models now accept a video file directly and reason over **time** — "what 
 
 Use native video for **temporal** questions. Use frames + transcript when you need cheap, auditable, citable extraction at scale — you keep the exact frame and timestamp behind every claim.
 
-> ⚖️ Downloading video is governed by the platform's Terms, and faces in frames are personal data — [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md). For lecture content, prefer official captions/transcripts where they exist.
+> ⚖️ Downloading video is governed by the platform's Terms, and faces in frames are personal data — [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/). For lecture content, prefer official captions/transcripts where they exist.
 
 ## When it fails
 
@@ -95,7 +95,7 @@ Use native video for **temporal** questions. Use frames + transcript when you ne
 
 1. Download a short Creative Commons video and run `shotlist.py`.
 2. Extract frames at 1 fps, then with scene detection — compare the counts.
-3. Extract the audio and transcribe it with [Speech AI](2026-02/docs/week-6/speech-ai.md).
+3. Extract the audio and transcribe it with [Speech AI](/2026-02/docs/week-6/speech-ai/).
 4. Merge: for a keyword in the transcript, print its timestamp and the nearest extracted frame.
 
 ## Checklist

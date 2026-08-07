@@ -3,15 +3,15 @@
 > **The same techniques that profile a person will show you what the internet already knows about *you*. Learn both halves — and practise only on yourself.**
 
 ⏱ ~10 min read · ~25 min hands-on
-🔗 needs: [OSINT — Infrastructure & Records](2026-02/docs/week-6/osint.md) · [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md)
+🔗 needs: [OSINT — Infrastructure & Records](/2026-02/docs/week-6/osint/) · [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/)
 
-[Week 6](2026-02/docs/week-6/osint.md) scoped OSINT to domains, certificates, and corporate records. This page covers the part aimed at **people** — because you cannot defend against a technique you don't understand, and because as a data scientist you will be handed personal datasets and asked what's safe to publish.
+[Week 6](/2026-02/docs/week-6/osint/) scoped OSINT to domains, certificates, and corporate records. This page covers the part aimed at **people** — because you cannot defend against a technique you don't understand, and because as a data scientist you will be handed personal datasets and asked what's safe to publish.
 
 > ⚖️ **Read this before anything else on the page.**
 >
 > - **Every exercise here targets *you*.** Your own accounts, your own photos, your own footprint. Not a classmate, not an ex, not a public figure, not "just to see if it works."
 > - **Aggregation is the harm.** Each fact may be public; assembling them into a dossier creates a capability that didn't exist before. Courts and regulators treat the compilation, not the components.
-> - **Profiling a person without a lawful basis breaches GDPR and India's DPDP Act** — and stalking/harassment laws apply regardless of how public the data was. [Clearview's €20M fines](2026-02/docs/week-6/legal-ethical-scraping.md) came from scraping *public* photos.
+> - **Profiling a person without a lawful basis breaches GDPR and India's DPDP Act** — and stalking/harassment laws apply regardless of how public the data was. [Clearview's €20M fines](/2026-02/docs/week-6/legal-ethical-scraping/) came from scraping *public* photos.
 > - **This is not a graded assignment on real people.** If work requires it, you need a written brief, a defined question, and your instructor's sign-off.
 
 ## Try it in 25 minutes — a self-OSINT audit
@@ -65,7 +65,7 @@ else:
 | **Username correlation** | One reused handle links accounts across platforms | Use distinct handles for distinct contexts |
 | **Email/breach data** | Breach corpora map addresses → services → old passwords | Unique passwords, a manager, HIBP alerts |
 | **Social graph** | Friends/followers reveal employer, family, location | Lock down follower lists; audit tagged posts |
-| **Image metadata** | EXIF GPS, timestamps, camera serials | Strip EXIF — [Image Processing Pipeline](2026-02/docs/week-6/image-processing-pipeline.md) |
+| **Image metadata** | EXIF GPS, timestamps, camera serials | Strip EXIF — [Image Processing Pipeline](/2026-02/docs/week-6/image-processing-pipeline/) |
 | **Visual geolocation** | Signage, plates, skylines, shadows locate a photo | Think about backgrounds before posting |
 | **Data brokers** | Aggregators sell compiled profiles | File opt-outs; they're legally required in many regions |
 
@@ -121,6 +121,6 @@ You will be handed datasets containing people. Carry three habits across:
 - [Have I Been Pwned](https://haveibeenpwned.com/) — breach exposure and alerts for your addresses.
 - [WhatsMyName](https://whatsmyname.app/) — username enumeration, and a lesson in handle reuse.
 - [OSINT Framework](https://osintframework.com/) — a map of the tooling landscape.
-- [India's DPDP Act](2026-02/docs/week-6/legal-ethical-scraping.md) and GDPR — the rules that govern all of the above.
+- [India's DPDP Act](/2026-02/docs/week-6/legal-ethical-scraping/) and GDPR — the rules that govern all of the above.
 
 <!-- SOURCES: https://haveibeenpwned.com/ , https://whatsmyname.app/ , https://osintframework.com/ . Exercises deliberately self-directed; no third-party targeting. -->

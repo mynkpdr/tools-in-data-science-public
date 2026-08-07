@@ -3,7 +3,7 @@
 > **Audio is a data source you can query. Transcribe it, timestamp it, and it becomes searchable text like anything else you scraped.**
 
 ⏱ ~8 min read · ~12 min hands-on
-🔗 needs: [Video Understanding](2026-02/docs/week-6/video-understanding.md) · [Local LLMs](2026-02/docs/week-2/11-local-llms-1-basics.md)
+🔗 needs: [Video Understanding](/2026-02/docs/week-6/video-understanding/) · [Local LLMs](/2026-02/docs/week-2/11-local-llms-1-basics/)
 
 Podcasts, lectures, earnings calls, support recordings — enormous amounts of information exist only as speech. Speech-to-text (STT) turns it into text you can search, chunk, and feed to an LLM.
 
@@ -38,7 +38,7 @@ for seg in segments:
 
 ✅ Timestamps are the valuable part: they let you cite "at 12:43" and link a claim back to the audio.
 
-No audio handy? Pull some with `ffmpeg` — see [Video Understanding](2026-02/docs/week-6/video-understanding.md):
+No audio handy? Pull some with `ffmpeg` — see [Video Understanding](/2026-02/docs/week-6/video-understanding/):
 
 ```bash
 ffmpeg -i video.mp4 -vn -acodec libmp3lame audio.mp3
@@ -58,7 +58,7 @@ For **Indian-language** audio, test before committing — accuracy varies a lot 
 
 **Text-to-speech** is the reverse trip: hosted options (ElevenLabs, OpenAI TTS) sound best; [Piper](https://github.com/OHF-Voice/piper1-gpl) runs locally and free.
 
-> ⚖️ Recordings of people are **personal data**, and voice is biometric. Transcribing a public lecture is fine; scraping private calls or cloning someone's voice without consent is not — [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md).
+> ⚖️ Recordings of people are **personal data**, and voice is biometric. Transcribing a public lecture is fine; scraping private calls or cloning someone's voice without consent is not — [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/).
 
 ## When it fails
 

@@ -3,11 +3,11 @@
 > **When the data is a chart, a scanned table, or a UI built to defeat parsing — screenshot it and ask a vision model for JSON.**
 
 ⏱ ~8 min read · ~15 min hands-on
-🔗 needs: [Playwright & Selenium](2026-02/docs/week-6/playwright-selenium.md) · [Structured Output](2026-02/docs/week-3/structured-output.md)
+🔗 needs: [Playwright & Selenium](/2026-02/docs/week-6/playwright-selenium/) · [Structured Output](/2026-02/docs/week-3/structured-output/)
 
 Some data simply isn't in the DOM: values baked into an image, a canvas-rendered chart, a scanned PDF page, or a deliberately obfuscated layout. A vision-language model (VLM) reads the *rendered pixels* the way a person would.
 
-It's the **last** resort — slower and costlier than [a hidden API](2026-02/docs/week-6/hidden-json-apis.md) or [HTML parsing](2026-02/docs/week-6/html-to-markdown.md) — but it works where everything else fails.
+It's the **last** resort — slower and costlier than [a hidden API](/2026-02/docs/week-6/hidden-json-apis/) or [HTML parsing](/2026-02/docs/week-6/html-to-markdown/) — but it works where everything else fails.
 
 ## Try it in 5 minutes — screenshot → JSON
 
@@ -49,17 +49,17 @@ with sync_playwright() as p:
 | **DeepSeek-VL2** | Excellent OCR/document understanding at low compute |
 | **Hosted (Claude, Gemini, GPT)** | Best accuracy with zero setup; you send the image to a third party |
 
-Run open weights locally via [Ollama](2026-02/docs/week-2/11-local-llms-2-lmstudio-ollama.md) when the images are sensitive or the volume makes API pricing hurt.
+Run open weights locally via [Ollama](/2026-02/docs/week-2/11-local-llms-2-lmstudio-ollama/) when the images are sensitive or the volume makes API pricing hurt.
 
 ## Make the output trustworthy
 
 VLMs hallucinate confidently — a misread digit looks exactly like a correct one. Three defences:
 
-1. **Force a schema.** Demand JSON and validate it — [Structured Output](2026-02/docs/week-3/structured-output.md). A parse failure is a signal.
+1. **Force a schema.** Demand JSON and validate it — [Structured Output](/2026-02/docs/week-3/structured-output/). A parse failure is a signal.
 2. **Crop tightly.** One element per image beats a full-page screenshot for both cost and accuracy.
 3. **Verify what you can.** Do the line items sum to the stated total? Is the date plausible? Cross-check a sample by hand.
 
-> ⚖️ Screenshotting doesn't change permissions. The rules that govern scraping the page govern the pixels too — [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md).
+> ⚖️ Screenshotting doesn't change permissions. The rules that govern scraping the page govern the pixels too — [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/).
 
 ## When it fails
 
@@ -69,7 +69,7 @@ VLMs hallucinate confidently — a misread digit looks exactly like a correct on
 | Model invents fields | Vague prompt | Give an explicit schema; say "return null if absent" |
 | Output isn't valid JSON | No format constraint | Use structured output / JSON mode; retry on parse failure |
 | Costs explode | Full-page images every time | Crop; cache by image hash; try HTML first |
-| Rotated/skewed scans | Not deskewed | Pre-process → [Image Processing Pipeline](2026-02/docs/week-6/image-processing-pipeline.md) |
+| Rotated/skewed scans | Not deskewed | Pre-process → [Image Processing Pipeline](/2026-02/docs/week-6/image-processing-pipeline/) |
 
 ## Your turn (≈15 min)
 
@@ -90,6 +90,6 @@ VLMs hallucinate confidently — a misread digit looks exactly like a correct on
 
 - [Qwen3-VL](https://github.com/QwenLM/Qwen3-VL) — the leading open-weight vision family.
 - [Playwright screenshots](https://playwright.dev/python/docs/screenshots) — element, full-page, and scale options.
-- [Structured Output (Week 3)](2026-02/docs/week-3/structured-output.md) — making model output parseable by construction.
+- [Structured Output (Week 3)](/2026-02/docs/week-3/structured-output/) — making model output parseable by construction.
 
 <!-- SOURCES: https://github.com/QwenLM/Qwen3-VL , https://playwright.dev/python/docs/screenshots , https://books.toscrape.com/ -->

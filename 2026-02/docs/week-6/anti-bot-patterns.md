@@ -3,11 +3,11 @@
 > **Most blocks aren't Cloudflare-grade. Learn the short ladder of defences sites use — and the honest response to each rung.**
 
 ⏱ ~8 min read · ~12 min hands-on
-🔗 needs: [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md) · [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md)
+🔗 needs: [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/) · [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/)
 
 Before you reach for stealth browsers, know the ladder. Nine times out of ten a "block" is something simple — a missing header, too many requests, or a session cookie you didn't carry. Each rung has a *correct* response and an *arms-race* response; prefer the correct one.
 
-> ⚖️ Escalating against a site that clearly doesn't want you is a legal and ethical decision, not just a technical one. "I got past it" is not "I was allowed." Re-read [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md) before you climb.
+> ⚖️ Escalating against a site that clearly doesn't want you is a legal and ethical decision, not just a technical one. "I got past it" is not "I was allowed." Re-read [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/) before you climb.
 
 ## Try it in 5 minutes — see what you're broadcasting
 
@@ -35,11 +35,11 @@ print(r.json()["headers"])
 
 | Rung | How it spots you | The honest response |
 |---|---|---|
-| **Rate limiting / IP block** | Too many requests from one IP | Slow down, cache, respect `Retry-After` → [Rate Limits](2026-02/docs/week-6/rate-limits-retries-caching.md) |
+| **Rate limiting / IP block** | Too many requests from one IP | Slow down, cache, respect `Retry-After` → [Rate Limits](/2026-02/docs/week-6/rate-limits-retries-caching/) |
 | **Header / User-Agent filter** | Missing or `python-*` UA, no `Accept` | Send complete, honest headers (identify your bot) |
-| **Session / token check** | No cookie or CSRF token | Reuse an `httpx.Client`; grab the token first → [Authenticated Scraping](2026-02/docs/week-6/authenticated-scraping.md) |
-| **Browser fingerprinting** | `navigator.webdriver`, headless markers | Drive a real browser → [Playwright](2026-02/docs/week-6/playwright-selenium.md); stealth builds if permitted |
-| **TLS / HTTP2 fingerprint** | Python's TLS stack ≠ a browser's | `curl_cffi` impersonation → [Cloudflare Bot Protection](2026-02/docs/week-6/cloudflare-bot.md) |
+| **Session / token check** | No cookie or CSRF token | Reuse an `httpx.Client`; grab the token first → [Authenticated Scraping](/2026-02/docs/week-6/authenticated-scraping/) |
+| **Browser fingerprinting** | `navigator.webdriver`, headless markers | Drive a real browser → [Playwright](/2026-02/docs/week-6/playwright-selenium/); stealth builds if permitted |
+| **TLS / HTTP2 fingerprint** | Python's TLS stack ≠ a browser's | `curl_cffi` impersonation → [Cloudflare Bot Protection](/2026-02/docs/week-6/cloudflare-bot/) |
 | **CAPTCHA / Turnstile** | An interactive challenge | Solve it in a browser *you* run, get permission, or stop |
 
 The rungs are ordered by effort *and* by how far into an arms race they take you. Climb only as far as your permission does.
@@ -75,10 +75,10 @@ with httpx.Client(headers=HEADERS, timeout=10, follow_redirects=True) as client:
 
 ## The arms-race rungs — and why they're a last resort
 
-Proxy-rotation services and CAPTCHA-solving services (2Captcha, commercial residential-proxy pools, and the like) exist and work. But reaching for them means you're now *fighting* a site that has said "no" in code — which is exactly the fact pattern that made [hiQ lose on breach of contract](2026-02/docs/week-6/legal-ethical-scraping.md). The stronger the wall, the louder the site is telling you to use the front door:
+Proxy-rotation services and CAPTCHA-solving services (2Captcha, commercial residential-proxy pools, and the like) exist and work. But reaching for them means you're now *fighting* a site that has said "no" in code — which is exactly the fact pattern that made [hiQ lose on breach of contract](/2026-02/docs/week-6/legal-ethical-scraping/). The stronger the wall, the louder the site is telling you to use the front door:
 
-1. Is there an API, feed, or dataset? ([Sitemaps & feeds](2026-02/docs/week-6/sitemaps-rss-jsonld.md))
-2. Is it in an archive? ([Wayback & Common Crawl](2026-02/docs/week-6/wayback-commoncrawl.md))
+1. Is there an API, feed, or dataset? ([Sitemaps & feeds](/2026-02/docs/week-6/sitemaps-rss-jsonld/))
+2. Is it in an archive? ([Wayback & Common Crawl](/2026-02/docs/week-6/wayback-commoncrawl/))
 3. Can you just ask for access?
 
 If all three are no and the Terms forbid it, the correct engineering answer is often **don't**.
@@ -99,7 +99,7 @@ If all three are no and the Terms forbid it, the correct engineering answer is o
 
 ## Go deeper
 
-- [Cloudflare Bot Protection](2026-02/docs/week-6/cloudflare-bot.md) — the specialised, fingerprint-level version of this ladder.
+- [Cloudflare Bot Protection](/2026-02/docs/week-6/cloudflare-bot/) — the specialised, fingerprint-level version of this ladder.
 - [What is `robots.txt` — RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html) — the rule most blocks are quietly enforcing.
 - [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python) — a stealth Playwright build, for the fingerprinting rung.
 

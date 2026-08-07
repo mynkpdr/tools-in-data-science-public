@@ -3,7 +3,7 @@
 > Get a scraper running on a free daily cron that commits its own data — the foundation every other Week 6 lab builds on.
 
 ⏱ ~2 hours
-🔗 needs: [Scheduled Scraping](2026-02/docs/week-6/scheduled-scraping.md) · [DuckDB + Parquet](2026-02/docs/week-6/duckdb-parquet.md)
+🔗 needs: [Scheduled Scraping](/2026-02/docs/week-6/scheduled-scraping/) · [DuckDB + Parquet](/2026-02/docs/week-6/duckdb-parquet/)
 
 A small, complete pipeline: fetch → store → schedule → query. Deliberately uses a **public, documented API** so nothing here is ethically ambiguous.
 
@@ -93,6 +93,6 @@ if __name__ == "__main__":
 
 ## Stretch goals
 
-- Add [change detection](2026-02/docs/week-6/change-detection-dedup.md): track how a story's score evolves across days.
+- Add [change detection](/2026-02/docs/week-6/change-detection-dedup/): track how a story's score evolves across days.
 - Publish the DuckDB output to GitHub Pages as a small chart.
 - Add a second source (Lobsters, Reddit's public JSON) and compare front pages.

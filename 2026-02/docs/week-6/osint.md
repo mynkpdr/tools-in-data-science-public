@@ -3,11 +3,11 @@
 > **Build a picture of an organisation's public footprint — domains, certificates, code, filings — from open sources, and know exactly how far a single source can be trusted.**
 
 ⏱ ~10 min read · ~15 min hands-on
-🔗 needs: [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md) · [Wayback & Common Crawl](2026-02/docs/week-6/wayback-commoncrawl.md)
+🔗 needs: [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/) · [Wayback & Common Crawl](/2026-02/docs/week-6/wayback-commoncrawl/)
 
-Open-source intelligence (OSINT) is assembling a verified picture from public sources. This page scopes to **infrastructure and public records** — the material that matters for data science and security analysis. Profiling people is a different discipline with a much heavier duty of care; that lives in [Week 7 → Person & Social OSINT](2026-02/docs/week-7/person-social-osint.md).
+Open-source intelligence (OSINT) is assembling a verified picture from public sources. This page scopes to **infrastructure and public records** — the material that matters for data science and security analysis. Profiling people is a different discipline with a much heavier duty of care; that lives in [Week 7 → Person & Social OSINT](/2026-02/docs/week-7/person-social-osint/).
 
-> ⚖️ **Consent and authorisation come first.** Practise on assets you own, a target you have written permission to study, or genuinely public infrastructure — and even then, collect only what answers a defined question. "Publicly reachable" is not "fair game for intensive collection." No harassment, no doxxing, no people-finding as sport. See [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md).
+> ⚖️ **Consent and authorisation come first.** Practise on assets you own, a target you have written permission to study, or genuinely public infrastructure — and even then, collect only what answers a defined question. "Publicly reachable" is not "fair game for intensive collection." No harassment, no doxxing, no people-finding as sport. See [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/).
 
 ## Try it in 5 minutes — read the certificate logs
 
@@ -53,7 +53,7 @@ for name in sorted(names):
 | **Internet-wide scans** | Open services, banners, product fingerprints | [Shodan](https://www.shodan.io/) · [Censys](https://search.censys.io/) |
 | **Public code** | Config, endpoints, infra clues in open repos | [GitHub code search](https://docs.github.com/en/search-github/searching-on-github/searching-code) |
 | **Company records** | Legal entities across jurisdictions | [OpenCorporates](https://opencorporates.com/) |
-| **Web history** | How a site/infra changed over time | [Wayback & Common Crawl](2026-02/docs/week-6/wayback-commoncrawl.md) |
+| **Web history** | How a site/infra changed over time | [Wayback & Common Crawl](/2026-02/docs/week-6/wayback-commoncrawl/) |
 | **File metadata** | EXIF/IPTC/XMP on documents & media | [ExifTool](https://exiftool.org/) |
 
 ## Corroboration is the whole job
@@ -95,6 +95,6 @@ Build a one-page **infrastructure profile** of a domain you own (or your institu
 - [ICANN Lookup (RDAP)](https://lookup.icann.org/) — the modern WHOIS.
 - [OWASP Amass](https://github.com/owasp-amass/amass) · [subfinder](https://github.com/projectdiscovery/subfinder) · [theHarvester](https://github.com/laramies/theHarvester) — passive discovery.
 - [Shodan](https://www.shodan.io/) · [Censys](https://search.censys.io/) — Internet-wide service maps.
-- [Person & Social OSINT (Week 7)](2026-02/docs/week-7/person-social-osint.md) — the people-focused side, with its heavier ethics.
+- [Person & Social OSINT (Week 7)](/2026-02/docs/week-7/person-social-osint/) — the people-focused side, with its heavier ethics.
 
 <!-- SOURCES: https://crt.sh/ , https://lookup.icann.org/ , https://github.com/owasp-amass/amass , https://github.com/projectdiscovery/subfinder , https://github.com/laramies/theHarvester , https://www.shodan.io/ , https://search.censys.io/ , https://docs.github.com/en/search-github/searching-on-github/searching-code , https://opencorporates.com/ , https://exiftool.org/ . VIDEO OMITTED: grok-suggested "Cyber With Nelia" video unverifiable. -->

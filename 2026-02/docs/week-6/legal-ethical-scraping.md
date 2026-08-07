@@ -13,7 +13,7 @@ Scraping sits at the intersection of four different bodies of law, plus the oper
 
 A 60-second pre-flight that catches 90% of trouble:
 
-1. **Look for the front door.** Is there an official API, data export, RSS feed, or open dataset? If yes, use it and stop — it's faster *and* safer. ([Sitemaps, RSS & JSON-LD](2026-02/docs/week-6/sitemaps-rss-jsonld.md) shows how to find these.)
+1. **Look for the front door.** Is there an official API, data export, RSS feed, or open dataset? If yes, use it and stop — it's faster *and* safer. ([Sitemaps, RSS & JSON-LD](/2026-02/docs/week-6/sitemaps-rss-jsonld/) shows how to find these.)
 2. **Read `robots.txt`.** Visit `https://SITE/robots.txt`. It tells you which paths the operator asks bots to avoid.
 3. **Skim the Terms of Service.** Search the page for "scrap", "crawl", "automated", "bot". An explicit ban changes everything (see hiQ, below).
 4. **Ask: is this personal data?** Names, emails, photos, profiles, reviews tied to a person → a much stricter regime applies.

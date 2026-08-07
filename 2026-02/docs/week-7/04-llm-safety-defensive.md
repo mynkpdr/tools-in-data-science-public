@@ -3,7 +3,7 @@
 > **You cannot make a model immune to prompt injection. You can make a successful injection worthless — by limiting what the system is able to do.**
 
 ⏱ ~10 min read · ~20 min hands-on
-🔗 needs: [LLM Security — Offensive](2026-02/docs/week-7/03-llm-security-offensive.md) · [Sandboxing Agent Code](2026-02/docs/week-5/sandboxing.md)
+🔗 needs: [LLM Security — Offensive](/2026-02/docs/week-7/03-llm-security-offensive/) · [Sandboxing Agent Code](/2026-02/docs/week-5/sandboxing/)
 
 The defensive mindset is **assume the model will be compromised**. Design so that a model doing the worst possible thing still can't cause serious harm. Filtering inputs helps at the margin; architecture is what actually saves you.
 
@@ -64,7 +64,7 @@ for attempt in [
 | **1. Least privilege** | Read-only creds, allow-listed tools, no ambient access | Caps the blast radius no matter what the model says |
 | **2. Human-in-the-loop** | Approval before irreversible/costly actions | Stops the worst outcomes outright |
 | **3. Output validation** | Schema-check every tool call and rendered output | Catches malformed and malicious structure |
-| **4. Sandboxing** | Untrusted code runs isolated → [Week 5](2026-02/docs/week-5/sandboxing.md) | Contains what does execute |
+| **4. Sandboxing** | Untrusted code runs isolated → [Week 5](/2026-02/docs/week-5/sandboxing/) | Contains what does execute |
 | **5. Budget limits** | Token/time/spend caps | Bounds LLM10 runaway cost |
 | **6. Input filtering** | Detect known injection patterns | Useful, but **bypassable — never your only defence** |
 
@@ -99,7 +99,7 @@ flowchart TD
 
 ## Log everything
 
-You cannot investigate what you didn't record. Log every prompt, tool call, and outcome with a request ID — that's the [observability](2026-02/docs/week-2/09-observability.md) you built in Week 2, applied to a security problem. When something goes wrong, the trace is the difference between a fix and a guess.
+You cannot investigate what you didn't record. Log every prompt, tool call, and outcome with a request ID — that's the [observability](/2026-02/docs/week-2/09-observability/) you built in Week 2, applied to a security problem. When something goes wrong, the trace is the difference between a fix and a guess.
 
 ## When it fails
 
@@ -114,7 +114,7 @@ You cannot investigate what you didn't record. Log every prompt, tool call, and 
 ## Your turn (≈20 min)
 
 1. Run `defended.py`; add a new destructive tool and confirm it's blocked by default.
-2. Take your [offensive attacks](2026-02/docs/week-7/03-llm-security-offensive.md) and re-run them against this dispatcher — which now fail, and *at which layer*?
+2. Take your [offensive attacks](/2026-02/docs/week-7/03-llm-security-offensive/) and re-run them against this dispatcher — which now fail, and *at which layer*?
 3. Add a token/spend budget that raises before an expensive loop completes.
 4. Write the "worst case" paragraph for one of your projects: if the model were fully attacker-controlled, what's the maximum damage? Then remove one capability to shrink it.
 
@@ -131,6 +131,6 @@ You cannot investigate what you didn't record. Log every prompt, tool call, and 
 
 - [OWASP GenAI Security Project](https://genai.owasp.org/) — defensive cheat sheets, agentic guidance.
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) — governance around the engineering.
-- [Sandboxing Agent Code (Week 5)](2026-02/docs/week-5/sandboxing.md) — the isolation layer in practice.
+- [Sandboxing Agent Code (Week 5)](/2026-02/docs/week-5/sandboxing/) — the isolation layer in practice.
 
 <!-- SOURCES: https://genai.owasp.org/ , https://www.nist.gov/itl/ai-risk-management-framework -->

@@ -3,7 +3,7 @@
 > **Data is only useful if it's fresh. Put your scraper on a free cron, make it idempotent, and let it build a time-series while you sleep.**
 
 ⏱ ~8 min read · ~15 min hands-on
-🔗 needs: [Change Detection & Dedup](2026-02/docs/week-6/change-detection-dedup.md) · [GitHub Actions](2026-02/docs/week-1/04-git-github.md)
+🔗 needs: [Change Detection & Dedup](/2026-02/docs/week-6/change-detection-dedup/) · [GitHub Actions](/2026-02/docs/week-1/04-git-github/)
 
 A one-off scrape is a snapshot. A *scheduled* scrape is a dataset that gets more valuable every day — and GitHub Actions will run it for free.
 
@@ -44,8 +44,8 @@ jobs:
 
 A scheduled job *will* run twice eventually — a retry, a manual trigger, an overlapping run. Design for it:
 
-- **Idempotent writes.** Re-running must not duplicate rows → the `UPSERT` pattern in [Change Detection & Dedup](2026-02/docs/week-6/change-detection-dedup.md).
-- **Append, don't overwrite.** Write dated files (`data/date=2026-08-07/part.parquet`) so history accumulates and [DuckDB globs them](2026-02/docs/week-6/duckdb-parquet.md).
+- **Idempotent writes.** Re-running must not duplicate rows → the `UPSERT` pattern in [Change Detection & Dedup](/2026-02/docs/week-6/change-detection-dedup/).
+- **Append, don't overwrite.** Write dated files (`data/date=2026-08-07/part.parquet`) so history accumulates and [DuckDB globs them](/2026-02/docs/week-6/duckdb-parquet/).
 - **Fail loudly.** A scraper that silently writes zero rows for a month is worse than one that crashes on day one.
 
 ```python
@@ -59,8 +59,8 @@ if len(rows) < EXPECTED_MINIMUM:
 | Option | Good for | Watch out |
 |---|---|---|
 | **GitHub Actions** | Free, versioned, data commits back to the repo | Scheduled jobs can be delayed at peak; disabled after ~60 days of repo inactivity |
-| **Cloud scheduler + serverless** | Reliable timing, real infrastructure | Costs money → [Week 7](2026-02/docs/week-7/07-serverless-functions.md) |
-| **A VM with `cron`** | Full control, long jobs | You maintain it → [Week 7](2026-02/docs/week-7/06-vms-ssh.md) |
+| **Cloud scheduler + serverless** | Reliable timing, real infrastructure | Costs money → [Week 7](/2026-02/docs/week-7/07-serverless-functions/) |
+| **A VM with `cron`** | Full control, long jobs | You maintain it → [Week 7](/2026-02/docs/week-7/06-vms-ssh/) |
 
 Start with Actions. Graduate when you need guaranteed timing or runs longer than the job limit.
 
@@ -74,7 +74,7 @@ API keys go in **Settings → Secrets and variables → Actions**, never in the 
           BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
 ```
 
-> ⚖️ A schedule multiplies your footprint: one polite request becomes 365 a year, and a bug becomes thousands. Re-check `robots.txt` and rate limits before automating — [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md) and [Rate Limits](2026-02/docs/week-6/rate-limits-retries-caching.md).
+> ⚖️ A schedule multiplies your footprint: one polite request becomes 365 a year, and a bug becomes thousands. Re-check `robots.txt` and rate limits before automating — [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/) and [Rate Limits](/2026-02/docs/week-6/rate-limits-retries-caching/).
 
 ## When it fails
 
@@ -85,7 +85,7 @@ API keys go in **Settings → Secrets and variables → Actions**, never in the 
 | Silently stopped | Actions disables cron after ~60 days of inactivity | Push occasionally, or re-enable |
 | `Permission denied` on push | Missing `contents: write` | Add the `permissions` block |
 | A commit every single day | Committing unconditionally | Use the `git diff --staged --quiet ||` guard |
-| Works locally, 403 on CI | Datacenter IP, no cookies | [Anti-bot Patterns](2026-02/docs/week-6/anti-bot-patterns.md) |
+| Works locally, 403 on CI | Datacenter IP, no cookies | [Anti-bot Patterns](/2026-02/docs/week-6/anti-bot-patterns/) |
 
 ## Your turn (≈15 min)
 

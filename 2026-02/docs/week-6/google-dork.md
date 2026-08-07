@@ -3,11 +3,11 @@
 > **Turn a search box into a precision data-sourcing tool — find the exact files and datasets you need, then automate it into a reproducible pipeline.**
 
 ⏱ ~9 min read · ~15 min hands-on
-🔗 needs: [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md) · [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md)
+🔗 needs: [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/) · [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/)
 
-"Dorking" is just using search operators well. The same operators that find a public dataset in seconds also reveal what an organisation has *accidentally* left indexed — so this is both a sourcing skill and the first move in a footprint audit. Here we focus on **sourcing + automation**; the defensive exposure-hunting side is [Week 7 → Dorking for Recon](2026-02/docs/week-7/dorking-recon.md).
+"Dorking" is just using search operators well. The same operators that find a public dataset in seconds also reveal what an organisation has *accidentally* left indexed — so this is both a sourcing skill and the first move in a footprint audit. Here we focus on **sourcing + automation**; the defensive exposure-hunting side is [Week 7 → Dorking for Recon](/2026-02/docs/week-7/dorking-recon/).
 
-> ⚖️ Use exposure-style dorks **only against domains you own or are authorised to audit**. Running "find exposed files" patterns against strangers can be illegal and is never a course exercise. See [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md).
+> ⚖️ Use exposure-style dorks **only against domains you own or are authorised to audit**. Running "find exposed files" patterns against strangers can be illegal and is never a course exercise. See [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/).
 
 ## Try it in 5 minutes — compose a query
 
@@ -89,7 +89,7 @@ The [Google Hacking Database](https://www.exploit-db.com/google-hacking-database
 | Env / config leakage | Indexed `.env`, `web.config`, keys in static assets | Search engines cache briefly-public secrets |
 | Open buckets | World-readable S3/GCS/Azure URLs on your naming | A recurring source of dataset/PII leaks |
 
-The full discover → verify → take-down → rotate → `noindex` → [Search Console removal](https://search.google.com/search-console) loop is in [Week 7 → Dorking for Recon](2026-02/docs/week-7/dorking-recon.md).
+The full discover → verify → take-down → rotate → `noindex` → [Search Console removal](https://search.google.com/search-console) loop is in [Week 7 → Dorking for Recon](/2026-02/docs/week-7/dorking-recon/).
 
 ## When it fails
 

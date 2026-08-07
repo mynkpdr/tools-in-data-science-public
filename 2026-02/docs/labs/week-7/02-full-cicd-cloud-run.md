@@ -3,7 +3,7 @@
 > One `git push` → tests, image build, deploy, health check. Plus the parts people skip: a rollback, a cost cap, and an approval gate.
 
 ⏱ ~4–5 hours
-🔗 needs: [GitHub Actions Advanced](2026-02/docs/week-7/01-github-actions-advanced.md) · [Advanced Docker](2026-02/docs/week-7/02-advanced-docker.md) · [Serverless Functions](2026-02/docs/week-7/07-serverless-functions.md)
+🔗 needs: [GitHub Actions Advanced](/2026-02/docs/week-7/01-github-actions-advanced/) · [Advanced Docker](/2026-02/docs/week-7/02-advanced-docker/) · [Serverless Functions](/2026-02/docs/week-7/07-serverless-functions/)
 
 Everything in Week 7 assembled into one working pipeline.
 
@@ -40,7 +40,7 @@ flowchart LR
 
 **5. Verify and roll back.** After deploying, poll `/health`. If it fails, the workflow must **automatically route traffic back** to the previous Cloud Run revision and fail the run. Demonstrate this: deliberately deploy a broken build and show the rollback in the Actions log.
 
-**6. Guard the cost.** `--max-instances` set, plus a billing budget alert ([Cost Alerting](2026-02/docs/week-7/09-cost-alerting.md)). Screenshot the budget config.
+**6. Guard the cost.** `--max-instances` set, plus a billing budget alert ([Cost Alerting](/2026-02/docs/week-7/09-cost-alerting/)). Screenshot the budget config.
 
 ## Deliverables
 
@@ -77,6 +77,6 @@ The rollback is the highest-signal deliverable. Anyone can deploy when everythin
 
 ## Stretch goals
 
-- Declare the Cloud Run service and budget in [Terraform](2026-02/docs/week-7/08-terraform-iac.md) instead of `gcloud` flags.
+- Declare the Cloud Run service and budget in [Terraform](/2026-02/docs/week-7/08-terraform-iac/) instead of `gcloud` flags.
 - Add a canary: send 10% of traffic to the new revision, promote only if error rates hold.
 - Post the image size and CI duration as a comment on every PR.

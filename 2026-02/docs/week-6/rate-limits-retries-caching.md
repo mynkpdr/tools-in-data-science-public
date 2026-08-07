@@ -3,7 +3,7 @@
 > **Scrape so politely you never get banned, and so efficiently you never fetch the same page twice.**
 
 ⏱ ~9 min read · ~15 min hands-on
-🔗 needs: [HTTP clients](2026-02/docs/week-1/06-http-clients.md) · [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md)
+🔗 needs: [HTTP clients](/2026-02/docs/week-1/06-http-clients/) · [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/)
 
 The difference between a scraper that runs for months and one that's blocked on day one is rarely cleverness — it's restraint. Three habits do almost all the work: **cap your concurrency**, **back off when told to**, and **cache everything**.
 
@@ -72,7 +72,7 @@ Retry only requests that are **safe to repeat**: `GET`, `HEAD`, and other reads.
 |---|---|---|
 | `429 Too Many Requests` | ✅ | You're going too fast — slow down and obey `Retry-After` |
 | `500 / 502 / 503 / 504` | ✅ | Server-side hiccup, usually temporary |
-| `403 / 401` | ❌ | Permission problem — retrying won't fix it → [Anti-bot Patterns](2026-02/docs/week-6/anti-bot-patterns.md) |
+| `403 / 401` | ❌ | Permission problem — retrying won't fix it → [Anti-bot Patterns](/2026-02/docs/week-6/anti-bot-patterns/) |
 | `404` | ❌ | It isn't there. It won't be there next time either |
 
 ## Cap concurrency
@@ -98,7 +98,7 @@ async def main(urls: list[str]) -> list[str]:
         return await asyncio.gather(*(fetch(client, u) for u in urls))
 ```
 
-If `robots.txt` specifies a `Crawl-delay`, honour it — [the checker in Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md) prints it for you.
+If `robots.txt` specifies a `Crawl-delay`, honour it — [the checker in Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/) prints it for you.
 
 ## Cache: the politest optimisation
 
@@ -140,7 +140,7 @@ Run it twice: the second run returns in near-zero time with `from_cache=True`.
 1. Run `polite_get.py` and record the delay sequence. Change the base from `2**attempt` to `1.5**attempt` and compare.
 2. Point it at `https://httpbin.org/delay/3` with `timeout=1` — watch a *timeout* fail differently from a `429`, and decide whether it should retry.
 3. Run `cached.py` twice and confirm the second run reports `from_cache=True`.
-4. Take the paginate loop from [Pagination & Infinite Scroll](2026-02/docs/week-6/pagination-infinite-scroll.md) and add backoff between pages.
+4. Take the paginate loop from [Pagination & Infinite Scroll](/2026-02/docs/week-6/pagination-infinite-scroll/) and add backoff between pages.
 
 ## Checklist
 

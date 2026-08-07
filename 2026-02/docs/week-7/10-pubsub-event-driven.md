@@ -3,9 +3,9 @@
 > **Stop making the caller wait. Drop a message on a queue, return immediately, and let workers do the slow part — with retries you didn't have to write.**
 
 ⏱ ~9 min read · ~20 min hands-on
-🔗 needs: [Serverless Functions](2026-02/docs/week-7/07-serverless-functions.md) · [Async & Parallelism](2026-02/docs/week-5/async-parallelism.md)
+🔗 needs: [Serverless Functions](/2026-02/docs/week-7/07-serverless-functions/) · [Async & Parallelism](/2026-02/docs/week-5/async-parallelism/)
 
-Your scraper takes 90 seconds. Your [serverless request](2026-02/docs/week-7/07-serverless-functions.md) times out at 60. The fix isn't a bigger timeout — it's splitting the work: accept the job, queue it, respond instantly, and process it elsewhere.
+Your scraper takes 90 seconds. Your [serverless request](/2026-02/docs/week-7/07-serverless-functions/) times out at 60. The fix isn't a bigger timeout — it's splitting the work: accept the job, queue it, respond instantly, and process it elsewhere.
 
 ## Try it in 5 minutes — the pattern, locally
 
@@ -88,7 +88,7 @@ flowchart LR
 
 Most brokers (Pub/Sub, SQS) guarantee **at-least-once**, not exactly-once. A message *will* occasionally be delivered twice — a worker died after doing the work but before acknowledging, or a redelivery raced.
 
-So **consumers must be idempotent**. You already know how: the stable ID + content hash from [Change Detection & Dedup](2026-02/docs/week-6/change-detection-dedup.md). Processing the same message twice must produce the same result, not two rows.
+So **consumers must be idempotent**. You already know how: the stable ID + content hash from [Change Detection & Dedup](/2026-02/docs/week-6/change-detection-dedup/). Processing the same message twice must produce the same result, not two rows.
 
 ```python
 if already_processed(message_id):     # dedupe on a stable message ID
@@ -123,7 +123,7 @@ For this course: Pub/Sub + Cloud Run workers, or Redis + RQ locally.
 
 1. Run `queue_demo.py`; add a second failing URL and watch the dead-letter queue collect both.
 2. Make the worker idempotent: add a `seen` set of message IDs and confirm a duplicate is skipped.
-3. Split your [scraper](2026-02/docs/week-6/scheduled-scraping.md) in two — an endpoint that enqueues a URL and returns `202`, and a worker that scrapes it.
+3. Split your [scraper](/2026-02/docs/week-6/scheduled-scraping/) in two — an endpoint that enqueues a URL and returns `202`, and a worker that scrapes it.
 4. Deploy it on Pub/Sub + Cloud Run (or Redis + RQ) and confirm the API responds in milliseconds regardless of scrape time.
 5. Add an alert for "oldest unacked message older than 10 minutes."
 

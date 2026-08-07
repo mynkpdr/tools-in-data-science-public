@@ -3,7 +3,7 @@
 > **Before you write a single selector, check whether the site is already handing out its data — as a URL index, a change feed, or clean JSON embedded in the page.**
 
 ⏱ ~8 min read · ~15 min hands-on
-🔗 needs: [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md) · [Hidden JSON APIs](2026-02/docs/week-6/hidden-json-apis.md)
+🔗 needs: [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/) · [Hidden JSON APIs](/2026-02/docs/week-6/hidden-json-apis/)
 
 Sites publish structured data on purpose — for search engines, feed readers, and social previews. It's stable, it's meant to be machine-read, and almost nobody checks for it before writing a fragile HTML parser.
 
@@ -67,7 +67,7 @@ if __name__ == "__main__":
 | Source | Where | Gives you |
 |---|---|---|
 | **`sitemap.xml`** | `/sitemap.xml`, or the `Sitemap:` line in `/robots.txt` | Every URL the site wants indexed, often with `lastmod` dates |
-| **RSS / Atom** | `/feed`, `/rss`, or `<link rel="alternate" type="application/rss+xml">` | New items only — ideal for [change detection](2026-02/docs/week-6/change-detection-dedup.md) |
+| **RSS / Atom** | `/feed`, `/rss`, or `<link rel="alternate" type="application/rss+xml">` | New items only — ideal for [change detection](/2026-02/docs/week-6/change-detection-dedup/) |
 | **JSON-LD** | `<script type="application/ld+json">` in the page HTML | The article/product/event as clean, typed JSON |
 
 **`lastmod` is underrated:** it tells you which pages changed since your last run, so you can re-fetch a handful instead of the whole site.

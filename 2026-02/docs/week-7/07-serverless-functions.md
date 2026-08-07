@@ -3,7 +3,7 @@
 > **Deploy code without owning a server, pay only while it runs, and scale to zero when nobody's looking — provided you design for a process that can vanish at any moment.**
 
 ⏱ ~9 min read · ~20 min hands-on
-🔗 needs: [Deployment Platforms](2026-02/docs/week-2/07-deployment-platforms.md) · [Advanced Docker](2026-02/docs/week-7/02-advanced-docker.md)
+🔗 needs: [Deployment Platforms](/2026-02/docs/week-2/07-deployment-platforms/) · [Advanced Docker](/2026-02/docs/week-7/02-advanced-docker/)
 
 Serverless is the natural home for the workloads this course produces: a scheduled scraper, a webhook receiver, an inference endpoint used a few hundred times a day. You ship a function or container; the platform handles machines, scaling, and idle cost.
 
@@ -56,7 +56,7 @@ gcloud run deploy my-api --source . --region asia-south1 --allow-unauthenticated
 |---|---|---|
 | **Stateless** | Any request may hit a fresh instance | Never store session state in memory or on local disk |
 | **Ephemeral disk** | The filesystem vanishes | Write to object storage or a database |
-| **Bounded runtime** | Requests time out | Long jobs → queue + worker, or a [VM](2026-02/docs/week-7/06-vms-ssh.md) |
+| **Bounded runtime** | Requests time out | Long jobs → queue + worker, or a [VM](/2026-02/docs/week-7/06-vms-ssh/) |
 | **Cold starts** | Scale-to-zero means a first-request delay | Slim images; min-instances if latency matters |
 | **Concurrency** | One instance may serve many requests | Code must be thread/async-safe |
 
@@ -80,13 +80,13 @@ flowchart LR
 | **Vercel / Netlify** | Frontends with API routes |
 | **HF Spaces / Modal** | ML inference, GPUs on demand |
 
-Cloud Run is the best fit for this course: it takes the Docker image from [Advanced Docker](2026-02/docs/week-7/02-advanced-docker.md) unchanged.
+Cloud Run is the best fit for this course: it takes the Docker image from [Advanced Docker](/2026-02/docs/week-7/02-advanced-docker/) unchanged.
 
 ## Cold starts and cost
 
 Cold start ≈ image pull + process boot + your imports. Shrink all three: slim multi-stage images, lazy-import heavy libraries, and avoid loading a model at module scope unless you also set a minimum instance count.
 
-The flip side of scale-to-zero is **scale-to-many**: a traffic spike (or a bug, or a scraper hitting you) can launch hundreds of instances and a real bill. **Always set a max-instance cap** and an alert → [Cost Alerting](2026-02/docs/week-7/09-cost-alerting.md).
+The flip side of scale-to-zero is **scale-to-many**: a traffic spike (or a bug, or a scraper hitting you) can launch hundreds of instances and a real bill. **Always set a max-instance cap** and an alert → [Cost Alerting](/2026-02/docs/week-7/09-cost-alerting/).
 
 ```bash
 gcloud run deploy my-api --max-instances 10 --min-instances 0 --memory 512Mi
@@ -99,7 +99,7 @@ gcloud run deploy my-api --max-instances 10 --min-instances 0 --memory 512Mi
 | Container fails to start | Bound `127.0.0.1` or a fixed port | Bind `0.0.0.0`, read `$PORT` |
 | Data disappears between requests | Local disk is ephemeral | Object storage or a database |
 | First request slow, rest fast | Cold start | Slimmer image, lazy imports, min-instances |
-| Long job times out | Exceeds the request limit | Queue + worker → [Pub/Sub](2026-02/docs/week-7/10-pubsub-event-driven.md) |
+| Long job times out | Exceeds the request limit | Queue + worker → [Pub/Sub](/2026-02/docs/week-7/10-pubsub-event-driven/) |
 | Surprise bill | Unbounded autoscaling | `--max-instances` + budget alerts |
 | Works locally, 403 deployed | Missing IAM/auth flag | Check invoker permissions |
 
@@ -109,7 +109,7 @@ gcloud run deploy my-api --max-instances 10 --min-instances 0 --memory 512Mi
 2. Call it after several idle minutes and time the cold start, then again immediately — compare.
 3. Set `--max-instances 3` and explain in one line what that protects you from.
 4. Try writing a file in one request and reading it in the next; observe the failure and fix it with object storage.
-5. Point your [scheduled scraper](2026-02/docs/week-6/scheduled-scraping.md) at it via a cloud scheduler instead of GitHub Actions.
+5. Point your [scheduled scraper](/2026-02/docs/week-6/scheduled-scraping/) at it via a cloud scheduler instead of GitHub Actions.
 
 ## Checklist
 

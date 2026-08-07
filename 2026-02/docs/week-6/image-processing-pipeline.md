@@ -3,7 +3,7 @@
 > **Scraped images are rarely usable as-is. Deduplicate, normalise, and crop them before they reach a model or a database.**
 
 ⏱ ~7 min read · ~12 min hands-on
-🔗 needs: [Vision Models for Scraping](2026-02/docs/week-6/vision-models-for-scraping.md)
+🔗 needs: [Vision Models for Scraping](/2026-02/docs/week-6/vision-models-for-scraping/)
 
 Scrape a few thousand images and you'll have duplicates at different resolutions, EXIF-rotated photos that appear sideways, and 8 MB PNGs where a 200 KB JPEG would do. Fix that in a pipeline, once.
 
@@ -72,8 +72,8 @@ contours, _ = cv2.findContours(
 
 Scraped photos routinely carry **GPS coordinates**, timestamps, and camera serial numbers in EXIF. Re-publishing those can expose exactly where someone lives.
 
-- Reading EXIF for analysis (see [OSINT](2026-02/docs/week-6/osint.md)) is a legitimate technique.
-- **Storing or republishing** it is personal data under GDPR/DPDP → [Legal & Ethical Scraping](2026-02/docs/week-6/legal-ethical-scraping.md).
+- Reading EXIF for analysis (see [OSINT](/2026-02/docs/week-6/osint/)) is a legitimate technique.
+- **Storing or republishing** it is personal data under GDPR/DPDP → [Legal & Ethical Scraping](/2026-02/docs/week-6/legal-ethical-scraping/).
 
 Default to stripping it unless you have a documented reason to keep it.
 
